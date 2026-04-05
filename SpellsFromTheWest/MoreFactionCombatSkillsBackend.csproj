@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="13.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Combat.Math">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\GameData.Combat.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Common">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\GameData.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Common.Algorithm">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\GameData.Common.Algorithm.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Shared">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Utilities">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\GameData.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Utilities.Structure">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\GameData.Utilities.Structure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Redzen">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\Redzen.dll</HintPath>
+    </Reference>
+    <Reference Include="TaiwuModdingLib">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\TaiwuModdingLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

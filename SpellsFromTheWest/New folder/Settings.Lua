@@ -1,0 +1,16 @@
+return {
+	MyMainA = 0,
+	NoSQBonus = false,
+	MyLifeSQGrowType = 3,
+	MyLifeSQ = 0,
+	MyCombatSQGrowType = 3,
+	MyCombatSQ = 0,
+	DoCustomizeNormalFeatures = true,
+	MyDrawFeature = 9,
+	DoAddLifeSkillLearning = false,
+	DoAddCombatSkillLearning = false,
+	DoAddDreamLover = false,
+	DoAddWhiteSnake = false,
+	DoAddLongevity = false,
+	MyNormalFeatures = "",
+}

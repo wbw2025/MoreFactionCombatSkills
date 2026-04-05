@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'MoreFactionCombarSkillsFrontend'">
+    <AssemblyName>MoreFactionCombatSkillsFrontend</AssemblyName>
+  </PropertyGroup>
+</Project>
