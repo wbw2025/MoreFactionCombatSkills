@@ -39,6 +39,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         public override void OnEnable(DataContext context)
         {
             base.OnEnable(context);
+            AffectDatas = new Dictionary<AffectedDataKey, EDataModifyType>();
+            AffectDatas.Add(new AffectedDataKey(base.CharacterId, dmgKey, base.SkillTemplateId), EDataModifyType.Add);
             DomainManager.Combat.AddSkillEffect(context,
                 base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect), 0, 
                 10, autoRemoveOnNoCount: false);
@@ -82,20 +84,15 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             if (!(charId != base.CharacterId || skillId != base.SkillTemplateId || interrupted) && base.EffectCount > 0)
             {
                 DomainManager.Combat.ChangeSkillEffectToMinCount(context, base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect));
-                Invalidate(context);
+                DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, dmgKey);
 
             }
-        }
-        private void Invalidate(DataContext context)
-        {
-            DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, dmgKey);
         }
         private void accumulate(DataContext context)
         {
             DomainManager.Combat.ChangeSkillEffectCount(context, 
                 base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect), 1);
-            Invalidate(context);
-
+            DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, dmgKey);
         }
         sbyte sha = 19;
         sbyte wu = 20;

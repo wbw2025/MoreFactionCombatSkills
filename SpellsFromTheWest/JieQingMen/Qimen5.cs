@@ -87,13 +87,12 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             if (doAdd)
             {
                 DomainManager.Combat.ChangeSkillEffectCount(context, base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect), 1);
+                DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, 199);
                 if (DomainManager.Combat.GetSkillEffectCount(base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect)) > 9)
                 {
                     _delaying = true;
                 }
             }
-
-
         }
 
 
@@ -109,7 +108,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
 
         public override void OnEnable(DataContext context)
         {
-            CreateAffectedData(69, EDataModifyType.AddPercent, -1);
+            CreateAffectedData(199, EDataModifyType.AddPercent, -1);
             _affecting = false;
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
@@ -160,6 +159,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
                     _delaying = false;
                     short currCount = DomainManager.Combat.GetSkillEffectCount(base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect));
                     DomainManager.Combat.ChangeSkillEffectCount(context, base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect), (short)(7 - currCount));
+                    DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, 199);
+
                 }
             }
         }
@@ -187,29 +188,30 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
                 _delaying = false;
                 _affecting = false;
                 DomainManager.Combat.ChangeSkillEffectToMinCount(context, base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect));
+                DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, 199);
 
             }
-            if (PowerMatchAffectRequire(power))
+            /*if (PowerMatchAffectRequire(power))
             {
-                int enemySha = CountTricks(EnemyChar, sha);
-                int enemyWu = CountTricks(EnemyChar, wu);
-                DomainManager.Combat.RemoveTrick(context, EnemyChar, sha, (byte)enemySha);
-                DomainManager.Combat.RemoveTrick(context, EnemyChar, wu, (byte)enemyWu);
-                DomainManager.Combat.AddTrick(context, EnemyChar, sha, (byte)enemyWu);
-                DomainManager.Combat.AddTrick(context, EnemyChar, wu, (byte)enemySha);
+                //int enemySha = CountTricks(EnemyChar, sha);
+                //int enemyWu = CountTricks(EnemyChar, wu);
+                //DomainManager.Combat.RemoveTrick(context, EnemyChar, sha, (byte)enemySha);
+                //DomainManager.Combat.RemoveTrick(context, EnemyChar, wu, (byte)enemyWu);
+                //DomainManager.Combat.AddTrick(context, EnemyChar, sha, (byte)enemyWu);
+                //DomainManager.Combat.AddTrick(context, EnemyChar, wu, (byte)enemySha);
             }
             else
             {
-            }
+            }*/
         }
 
 
         public override int GetModifyValue(AffectedDataKey dataKey, int currModifyValue)
         {
-            if (dataKey.CharId == base.CharacterId && dataKey.FieldId == 69 && _affecting && dataKey.CombatSkillId == base.SkillTemplateId && dataKey.CustomParam0 == ((!base.IsDirect) ? 1 : 0))
+            if (dataKey.CharId == base.CharacterId && dataKey.FieldId == 199 && 
+                dataKey.CombatSkillId == base.SkillTemplateId)
             {
-                ShowSpecialEffectTips(1);
-                return CountTricks(EnemyChar, sha) + (IsDirect ? CountTricks(EnemyChar, wu) : 0);
+                return DomainManager.Combat.GetSkillEffectCount(base.CombatChar, new SkillEffectKey(base.SkillTemplateId, base.IsDirect)) * 10;
             }
             return 0;
         }

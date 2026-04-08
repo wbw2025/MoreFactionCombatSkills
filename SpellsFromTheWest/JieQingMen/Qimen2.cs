@@ -173,15 +173,15 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
                 {
                     DomainManager.Combat.RemoveTrick(context, CombatChar, sha, (byte)mySha, true);
                     DomainManager.Combat.RemoveTrick(context, EnemyChar, wu, (byte)enemyWu, false);
-                    DomainManager.Combat.AddTrick(context, CombatChar, sha, (byte)enemyWu, false);
                     DomainManager.Combat.AddTrick(context, EnemyChar, wu, (byte)mySha, false);
+                    DomainManager.Combat.AddTrick(context, CombatChar, sha, (byte)enemyWu, false);
                 }
                 else
                 {
                     DomainManager.Combat.RemoveTrick(context, EnemyChar, sha, (byte)enemySha, false);
                     DomainManager.Combat.RemoveTrick(context, EnemyChar, wu, (byte)enemyWu, false);
-                    DomainManager.Combat.AddTrick(context, EnemyChar, sha, (byte)enemyWu, false);
                     DomainManager.Combat.AddTrick(context, EnemyChar, wu, (byte)enemySha, false);
+                    DomainManager.Combat.AddTrick(context, EnemyChar, sha, (byte)enemyWu, false);
 
                 }
 
