@@ -2,10 +2,6 @@
 using GameData.Domains.Mod;
 using GameData.Utilities;
 using HarmonyLib;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +17,7 @@ namespace FeaturesBoundToFuyu
     [PluginConfig("SpellsFromTheWestFrontendPlugin", "wilhelm", "1.0")]
     public class SpellsFromTheWestFrontendPlugin : TaiwuRemakePlugin
     {
-	    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         Harmony harmony;
         public override void Dispose()
         {
