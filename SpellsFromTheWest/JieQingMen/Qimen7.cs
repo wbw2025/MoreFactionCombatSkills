@@ -68,7 +68,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             var power = base.SkillInstance.GetPower();
             var allyChar = DomainManager.Combat.GetCombatCharacter(base.CombatChar.IsAlly);
             var enemyChar = DomainManager.Combat.GetCombatCharacter(!base.CombatChar.IsAlly);
-            sbyte poisonLevel = 0;
+            sbyte poisonLevel = 1;
             if (allyChar.GetPersonalityValue(fuyuan) > enemyChar.GetPersonalityValue(fuyuan))
             {
                 poisonLevel += 1;
@@ -78,7 +78,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
                 var enemyPersonality = enemyChar.GetPersonalityValue(p.Key);
                 var allyPersonality = allyChar.GetPersonalityValue(p.Key);
                 var poisonType = p.Value;
-                int poisonValue = 600;
+                int poisonValue = 600 * 2;
                 if (allyPersonality > enemyPersonality)
                 {
                     DomainManager.Combat.AddPoison(context, base.CombatChar, base.CurrEnemyChar, poisonType, poisonLevel, poisonValue, base.SkillTemplateId, applySpecialEffect: true, canBounce: true, default(ItemKey), isDirectPoison: true);

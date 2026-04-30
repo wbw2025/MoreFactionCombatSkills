@@ -31,6 +31,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Xml.Linq;
 using TaiwuModdingLib.Core.Plugin;
+
 namespace FeaturesBoundToFuyu
 {
 
@@ -55,7 +56,9 @@ namespace FeaturesBoundToFuyu
             DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
             DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
         }
-
+        public override void OnEnterNewWorld()
+        {
+        }
         public override void OnLoadedArchiveData()
         {
 
@@ -210,6 +213,19 @@ namespace FeaturesBoundToFuyu
         }
 
         return false;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CombatDomain), "CastSkillFree", new Type[]
+    {
+        typeof(DataContext),
+        typeof(CombatCharacter),
+        typeof(short),
+        typeof(ECombatCastFreePriority)
+    })]
+    public static void OnCastSkillFreePatched(DataContext context, CombatCharacter character, short skillId, ECombatCastFreePriority priority)
+    {
+        MoreFactionCombatSkillsBackend.Helpers.Events.RaiseCastSkillFree(context, character, skillId, priority);
     }
 
 

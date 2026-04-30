@@ -8,60 +8,54 @@ using GameData.Domains.SpecialEffect;
 using GameData.Domains.SpecialEffect.CombatSkill;
 using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen;
 using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong;
+using GameData.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using static GameData.DomainEvents.Events;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
 {
-    internal class Jianfa8 : CombatSkillEffectBase
+    internal class Jianfa7 : CombatSkillEffectBase
     {
-        // 正： 发挥五成威力时，增加【佛王之剑】25%的威力。
-        // 逆：发挥五成威力时，增加下一个【佛王之剑】60%的威力。
+        // 正：Desc: ["发挥最少五成威力时，【佛王剑】有+20%的概率在施展后再次从50%无消耗施展。自动施展的【佛王剑】每释放一次，收到该特效加成效果-0.6倍。"]
 
-        // we dont need this
-        public static readonly int powerAmpDirect = 25;
-        public static readonly int powerAmpInDirect = 60;
-        
+        // 逆： Desc: ["发挥最少五成威力时，你的下一个【佛王剑】有85%的概率额外施展一次（不叠加）。"]
+
         int stackCount = 0;
-
-        //public static int GetStackCount(int charId)
-        //{
-        //    Jianfa8 instance = instances[charId];
-
-        //    return instance.stackCount;
-        //}
-        //public static void OnCast(int charId)
-        //{
-        //    Jianfa8 instance = instances[charId];
-
-        //    if (!instance.IsDirect)
-        //    {
-        //        instance.stackCount = 0;
-        //    }
-        //}
-        public Jianfa8()
+        bool isAutoCast = false;
+        double penaltyFactor = 1;
+        public Jianfa7()
         {
         }
-        public Jianfa8(CombatSkillKey skillKey)
-            : base(skillKey, 4110)
+        public Jianfa7(CombatSkillKey skillKey)
+            : base(skillKey, 4111)
         {
         }
         public override void OnEnable(DataContext context)
         {
             stackCount = 0;
+            penaltyFactor = 1;
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
-            CreateAffectedData(199, EDataModifyType.Add, -1);
+            Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
 
 
         }
         public override void OnDisable(DataContext context)
         {
+		Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
 
+        private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)
+        {
+            if (charId == base.CharacterId && Jianfa9.SkillIsFoWang(skillId) && isAutoCast)
+            {
+                DomainManager.Combat.ChangeSkillPrepareProgress(base.CombatChar, base.CombatChar.SkillPrepareTotalProgress * 50 / 100);
+            }
+        }
 
         private void OnCastSkillEnd(DataContext context, int charId, bool isAlly, short skillId, sbyte power, bool interrupted)
         {
@@ -75,18 +69,29 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
                     stackCount++;
                 else
                     stackCount = 1;
-                DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, 199);
                 ShowSpecialEffectTips(0);
             }
-            if (stackCount > 0 && skillId == Jianfa9.Jianfa9TId)
+            if (stackCount > 0 && Jianfa9.SkillIsFoWang(skillId))
             {
-                ShowSpecialEffectTips(0);
+                int recastChance = (int)(stackCount * (IsDirect ? 20 : 85) * penaltyFactor);
                 if (!IsDirect)
                 {
                     stackCount = 0;
-                    DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, 199);
-
                 }
+                if (recastChance > 0 && context.Random.Next(100) < recastChance && DomainManager.Combat.CanCastSkill(base.CombatChar, skillId, costFree: true))
+                {
+                    ShowSpecialEffectTips(0);
+                    penaltyFactor *= 0.4;
+                    isAutoCast = true;
+                    DomainManager.Combat.CastSkillFree(context, base.CombatChar, skillId);
+                }
+                else
+                {
+                    isAutoCast = false;
+                    penaltyFactor = 1;
+                }
+
+
             }
         }
         public override int GetModifyValue(AffectedDataKey dataKey, int currModifyValue)
