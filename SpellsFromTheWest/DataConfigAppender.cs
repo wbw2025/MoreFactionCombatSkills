@@ -182,18 +182,133 @@ namespace FeaturesBoundToFuyu
             return false;
         }
 
-        private static void ApplyChanges<TItem>(TItem configItem, Dictionary<string, object> changes, params string[] ignoredKeys)
+        private sealed class PendingChange
         {
-            var ignoredKeySet = new HashSet<string>(ignoredKeys, StringComparer.OrdinalIgnoreCase);
-            var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase;
-            Type targetType = configItem.GetType();
+            public PendingChange(string rawKey, string memberName, object value)
+            {
+                RawKey = rawKey;
+                MemberName = memberName;
+                Value = value;
+            }
+
+            public string RawKey { get; }
+
+            public string MemberName { get; }
+
+            public object Value { get; }
+        }
+
+        private sealed class PendingLocalizedChangeSet
+        {
+            public PendingChange BaseChange { get; set; }
+
+            public Dictionary<int, PendingChange> LocalizedChanges { get; } = new Dictionary<int, PendingChange>();
+        }
+
+        private static Dictionary<string, PendingLocalizedChangeSet> BuildPendingChanges(Dictionary<string, object> changes, HashSet<string> ignoredKeySet)
+        {
+            var pendingChanges = new Dictionary<string, PendingLocalizedChangeSet>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var change in changes)
             {
                 if (ignoredKeySet.Contains(change.Key))
                     continue;
 
-                FieldInfo targetField = targetType.GetField(change.Key, flags);
+                string memberName = change.Key;
+                bool isLocalized = TryParseLocalizedMemberKey(change.Key, out int languageKey, out memberName);
+
+                if (!pendingChanges.TryGetValue(memberName, out PendingLocalizedChangeSet changeSet))
+                {
+                    changeSet = new PendingLocalizedChangeSet();
+                    pendingChanges[memberName] = changeSet;
+                }
+
+                var pendingChange = new PendingChange(change.Key, memberName, change.Value);
+                if (isLocalized)
+                {
+                    changeSet.LocalizedChanges[languageKey] = pendingChange;
+                    continue;
+                }
+
+                changeSet.BaseChange = pendingChange;
+            }
+
+            return pendingChanges;
+        }
+
+        private static bool TryParseLocalizedMemberKey(string rawKey, out int languageKey, out string memberName)
+        {
+            languageKey = 0;
+            memberName = rawKey;
+            if (string.IsNullOrEmpty(rawKey))
+                return false;
+
+            int prefixLength = 0;
+            while (prefixLength < rawKey.Length && char.IsDigit(rawKey[prefixLength]))
+            {
+                prefixLength++;
+            }
+
+            if (prefixLength == 0 || prefixLength == rawKey.Length)
+                return false;
+
+            if (!int.TryParse(rawKey.Substring(0, prefixLength), NumberStyles.None, CultureInfo.InvariantCulture, out languageKey))
+                return false;
+
+            memberName = rawKey.Substring(prefixLength);
+            return !string.IsNullOrWhiteSpace(memberName);
+        }
+
+        private static PendingChange SelectPendingChange(PendingLocalizedChangeSet changeSet, int languageKey)
+        {
+            if (changeSet.LocalizedChanges.TryGetValue(languageKey, out PendingChange localizedChange))
+                return localizedChange;
+
+            return changeSet.BaseChange;
+        }
+
+        private static string GetUnknownChangeKey(PendingLocalizedChangeSet changeSet, int languageKey)
+        {
+            if (changeSet.LocalizedChanges.TryGetValue(languageKey, out PendingChange localizedChange))
+                return localizedChange.RawKey;
+
+            if (changeSet.BaseChange != null)
+                return changeSet.BaseChange.RawKey;
+
+            foreach (var pair in changeSet.LocalizedChanges)
+            {
+                return pair.Value.RawKey;
+            }
+
+            return string.Empty;
+        }
+
+        private static void ApplyChanges<TItem>(TItem configItem, Dictionary<string, object> changes, params string[] ignoredKeys)
+        {
+            var ignoredKeySet = new HashSet<string>(ignoredKeys, StringComparer.OrdinalIgnoreCase);
+            var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase;
+            Type targetType = configItem.GetType();
+            int languageKey = FeaturesBoundToFuyuPlugin.GetLanguageKey();
+            Dictionary<string, PendingLocalizedChangeSet> pendingChanges = BuildPendingChanges(changes, ignoredKeySet);
+
+            foreach (var pair in pendingChanges)
+            {
+                string memberName = pair.Key;
+                PendingLocalizedChangeSet changeSet = pair.Value;
+
+                FieldInfo targetField = targetType.GetField(memberName, flags);
+                PropertyInfo targetProperty = targetType.GetProperty(memberName, flags);
+
+                if (targetField == null && (targetProperty == null || !targetProperty.CanWrite))
+                {
+                    AdaptableLog.Info($"Applying for {changes["NewTemplateId"]}: Unknown config field/property: {GetUnknownChangeKey(changeSet, languageKey)}");
+                    continue;
+                }
+
+                PendingChange change = SelectPendingChange(changeSet, languageKey);
+                if (change == null)
+                    continue;
+
                 if (targetField != null)
                 {
                     object convertedValue = ConvertChangeValue(change.Value, targetField.FieldType);
@@ -201,16 +316,12 @@ namespace FeaturesBoundToFuyu
                     continue;
                 }
 
-                PropertyInfo targetProperty = targetType.GetProperty(change.Key, flags);
                 if (targetProperty != null && targetProperty.CanWrite)
                 {
                     object convertedValue = ConvertChangeValue(change.Value, targetProperty.PropertyType);
                     targetProperty.SetValue(configItem, convertedValue);
                     continue;
                 }
-
-                // throw new ArgumentOutOfRangeException($"Unknown config field/property: {change.Key}");
-                AdaptableLog.Info($"Applying for {changes["NewTemplateId"]}: Unknown config field/property: {change.Key}");
             }
         }
 
