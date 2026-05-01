@@ -133,6 +133,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 _delaying = false;
                 _affecting = true;
                 DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
+                ShowSpecialEffectTips(0);
             }
             else
             {

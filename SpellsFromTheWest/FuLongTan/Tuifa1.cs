@@ -9,6 +9,8 @@ using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect.CombatSkill;
 using GameData.Utilities;
+using MoreFactionCombatSkillsBackend.Helpers;
+using Events = GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
@@ -108,8 +110,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
                 if (DomainManager.CombatSkill.TryGetElement_CombatSkills(new CombatSkillKey(base.CharacterId, otherSkillId), out GameData.Domains.CombatSkill.CombatSkill otherSkill))
                 {
-                    totalHits += otherSkill.GetHitValue();
-                    totalPenetrations += otherSkill.GetPenetrations();
+                    totalHits += Helpers.Multiply(otherSkill.GetHitValue(), otherSkill.GetPower());
+                    totalPenetrations += Helpers.Multiply(otherSkill.GetPenetrations(), otherSkill.GetPower());
                 }
                 else
                 {
@@ -187,17 +189,17 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             switch (dataKey.FieldId)
             {
                 case 32:
-                    return _bonusHits[0] + 100000;
+                    return _bonusHits[0];
                 case 33:
-                    return _bonusHits[1] + 200000;
+                    return _bonusHits[1];
                 case 34:
-                    return _bonusHits[2] + 300000;
+                    return _bonusHits[2];
                 case 35:
-                    return _bonusHits[3] + 1;
+                    return _bonusHits[3];
                 case 44:
-                    return _bonusPenetrations.Outer + 200000;
+                    return _bonusPenetrations.Outer;
                 case 45:
-                    return _bonusPenetrations.Inner + 100000;
+                    return _bonusPenetrations.Inner;
                 default:
                     return 0;
             }

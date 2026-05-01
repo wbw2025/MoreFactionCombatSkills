@@ -104,6 +104,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 _delaying = false;
                 _affecting = true;
                 DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
+                ShowSpecialEffectTips(0);
             }
             else
             {
@@ -157,7 +158,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 DomainManager.Combat.AddFlaw(context, base.CurrEnemyChar, AddFlawLevel, SkillKey, -1);
             }
 
-            ShowSpecialEffectTips(0);
+            ShowSpecialEffectTips(1);
         }
     }
 }
