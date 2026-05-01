@@ -52,9 +52,44 @@ namespace FeaturesBoundToFuyu
             harmony = Harmony.CreateAndPatchAll(typeof(FeaturesBoundToFuyuPlugin));
             thisModIdStr = base.ModIdStr;
 
+            EnsureTypesArePreserved();
+
             string directory = DomainManager.Mod.GetModDirectory(thisModIdStr);
             DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
             DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
+        }
+
+        private static void EnsureTypesArePreserved()
+        {
+            // Prevent tree-shaking/trimming from removing types loaded via reflection
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa1);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa2);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa3);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa4);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa5);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa6);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa7);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa8);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan.Tuifa9);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen1);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen2);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen3);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen4);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen5);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen6);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen7);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen8);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen.Qimen9);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa1);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa2);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa3);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa4);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa5);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa6);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa7);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa7Depr);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa8);
+            _ = typeof(GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong.Jianfa9);
         }
         public override void OnEnterNewWorld()
         {

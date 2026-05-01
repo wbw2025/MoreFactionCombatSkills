@@ -67,12 +67,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
-            // Yield to Tuifa9 if it is queued for autocast (highest priority)
-            if (Tuifa9.IsQueued(character.GetId()))
-            {
-                return;
-            }
-
             if (!base.IsDirect)
             {
                 return;
@@ -99,12 +93,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
         private void TryDelayByEnemyUseItem(int charId)
         {
             if (_affecting || _delaying)
-            {
-                return;
-            }
-
-            // Yield to Tuifa9 if it is queued for autocast (highest priority)
-            if (Tuifa9.IsQueued(charId))
             {
                 return;
             }
@@ -152,6 +140,11 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
             if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
             {
+                if (Tuifa9.IsQueued(base.CharacterId))
+                {
+                    return;
+                }
+
                 _delaying = false;
                 _affecting = true;
                 DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
