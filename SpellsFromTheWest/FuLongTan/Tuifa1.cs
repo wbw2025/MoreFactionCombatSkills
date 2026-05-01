@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameData.Combat.Math;
 using GameData.Common;
@@ -7,12 +8,13 @@ using GameData.Domains.Character;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect.CombatSkill;
+using GameData.Utilities;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
     // 万龙破天步
     // 正练 - 发挥十成威力时，若已装备的其他腿法可以自动释放，则视为其满足了自动释放条件。
-    // 逆练 - 开始施展此功法时，封禁所有其他已装备的且未封禁的腿法10秒。本功法在此次释放时获得基础穿透和命中，数值等于各个以此方法封禁的腿法的基础穿透和命中之和。
+    // 逆练 - 开始施展此功法时，封禁所有其他已装备的且未封禁的腿法10秒。本功法在此次释放时获得基础穿透和命中，数值等于各个以此方法封禁的腿法的面板穿透和命中之和。
     internal class Tuifa1 : CombatSkillEffectBase
     {
         private const sbyte FullPower = 100;
@@ -40,6 +42,17 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
+
+            try
+            {
+                int[] ints = new int[4];
+                ints[10] = 1;
+            }
+            catch (Exception ex)
+            {
+                AdaptableLog.Info("Tuifa1");
+            }
+
             _bonusActive = false;
             _bonusHits = default;
             _bonusPenetrations = default;
@@ -52,19 +65,19 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             CreateAffectedData(44, EDataModifyType.Add, base.SkillTemplateId);
             CreateAffectedData(45, EDataModifyType.Add, base.SkillTemplateId);
 
-            Events.RegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
+            Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
 
         public override void OnDisable(DataContext context)
         {
-            Events.UnRegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
+            Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
 
-        private void OnCastAttackSkillBegin(DataContext context, CombatCharacter attacker, CombatCharacter defender, short skillId)
+        private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)
         {
-            if (base.IsDirect || attacker.GetId() != base.CharacterId || skillId != base.SkillTemplateId)
+            if (base.IsDirect || charId != base.CharacterId || skillId != base.SkillTemplateId)
             {
                 return;
             }
@@ -166,7 +179,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override int GetModifyValue(AffectedDataKey dataKey, int currModifyValue)
         {
-            if (!_bonusActive || dataKey.CharId != base.CharacterId || dataKey.CombatSkillId != base.SkillTemplateId)
+            if (!_bonusActive || dataKey.CharId != base.CharacterId) // do not check for templateid
             {
                 return 0;
             }
@@ -174,17 +187,17 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             switch (dataKey.FieldId)
             {
                 case 32:
-                    return _bonusHits[0] + 1000000;
+                    return _bonusHits[0] + 100000;
                 case 33:
-                    return _bonusHits[1] + 1;
+                    return _bonusHits[1] + 200000;
                 case 34:
-                    return _bonusHits[2] + 1000000;
+                    return _bonusHits[2] + 300000;
                 case 35:
                     return _bonusHits[3] + 1;
                 case 44:
-                    return _bonusPenetrations.Outer + 40000;
+                    return _bonusPenetrations.Outer + 200000;
                 case 45:
-                    return _bonusPenetrations.Inner + 40000;
+                    return _bonusPenetrations.Inner + 100000;
                 default:
                     return 0;
             }
