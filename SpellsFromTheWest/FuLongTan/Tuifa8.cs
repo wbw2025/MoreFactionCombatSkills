@@ -145,7 +145,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             {
                 _affecting = false;
                 _delaying = false;
-                DomainManager.Combat.SilenceSkill(context, base.CombatChar, base.SkillTemplateId, AutoCastSilenceFrames, 100);
+                DomainManager.Combat.SilenceSkill(context, base.CombatChar, base.SkillTemplateId, AutoCastSilenceFrames * (IsDirect ? 2 : 1), 100);
                 return;
             }
             _affecting = false;

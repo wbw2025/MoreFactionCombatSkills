@@ -122,6 +122,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 _delaying = false;
                 _affecting = true;
                 DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
+                ShowSpecialEffectTips(0);
+
             }
             else
             {
@@ -167,7 +169,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
-            int affectCount = power / MinPower;
+            int affectCount = power >= 1 ? 2 : 0;
             bool anyChanged = false;
             for (int i = 0; i < affectCount; i++)
             {
@@ -180,7 +182,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
             if (anyChanged)
             {
-                ShowSpecialEffectTips(0);
+                ShowSpecialEffectTips(1);
             }
         }
 

@@ -7,7 +7,7 @@ using GameData.Domains.Character;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect.CombatSkill;
-using AutoCastEvents = MoreFactionCombatSkillsBackend.Helpers.Events;
+using AutoCastEvents = MoreFactionCombatSkillsBackend.Helpers.MoreFactionCombarSkillsEvents;
 using System.Collections.Generic;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
@@ -23,7 +23,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private const sbyte DirectAddFlawLevel = 1;
 
-        private const int ReversePowerBonus = 10;
+        private int ReversePowerBonus = 0;
 
         private bool _checking;
 
@@ -96,6 +96,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 _delaying = false;
                 _affecting = true;
                 _queuedCharIds.Remove(base.CharacterId);
+                ShowSpecialEffectTips(0);
                 DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
             }
             else
@@ -151,12 +152,13 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 {
                     // 正练: Add random flaw to enemy
                     DomainManager.Combat.AddFlaw(context, base.CurrEnemyChar, DirectAddFlawLevel, SkillKey, -1);
-                    ShowSpecialEffectTips(0);
+                    ShowSpecialEffectTips(1);
                 }
                 else
                 {
                     // 逆练: Add random flaw to self; power bonus is applied via GetModifyValue
                     DomainManager.Combat.AddFlaw(context, base.CombatChar, ReverseAddFlawLevel, SkillKey, -1);
+                    ReversePowerBonus += 10;
                     DomainManager.SpecialEffect.InvalidateCache(context, base.CharacterId, 199);
                     ShowSpecialEffectTips(1);
                 }
