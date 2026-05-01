@@ -193,6 +193,9 @@ namespace FeaturesBoundToFuyu
                 if (ignoredKeySet.Contains(change.Key))
                     continue;
 
+                if (!string.IsNullOrEmpty(change.Key) && char.IsDigit(change.Key[0]))
+                    continue;
+
                 FieldInfo targetField = targetType.GetField(change.Key, flags);
                 if (targetField != null)
                 {
