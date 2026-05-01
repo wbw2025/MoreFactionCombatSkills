@@ -33,6 +33,16 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private OuterAndInnerInts _bonusPenetrations;
 
+        private bool _checking;
+
+        private bool _delaying;
+
+        private bool _affecting;
+
+        private static readonly int[] ExternalSkillIds = { 42, 43, 44 };
+
+        private List<short> _queuedSkills;
+
         public Tuifa1()
         {
         }
@@ -50,7 +60,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 int[] ints = new int[4];
                 ints[10] = 1;
             }
-            catch (Exception ex)
+            catch
             {
                 AdaptableLog.Info("Tuifa1");
             }
@@ -58,7 +68,10 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             _bonusActive = false;
             _bonusHits = default;
             _bonusPenetrations = default;
-
+            _checking = false;
+            _delaying = false;
+            _affecting = false;
+            _queuedSkills = new List<short>();
             // 32-35: 命中, 44-45: 穿透 (all scoped to this skill template)
             for (ushort fieldId = 32; fieldId <= 35; fieldId++)
             {
@@ -69,12 +82,14 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
             Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
         }
 
         public override void OnDisable(DataContext context)
         {
             Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
         }
 
         private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)
@@ -138,7 +153,21 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private void OnCastSkillEnd(DataContext context, int charId, bool isAlly, short skillId, sbyte power, bool interrupted)
         {
-            if (charId != base.CharacterId || skillId != base.SkillTemplateId)
+            if (charId != base.CharacterId)
+            {
+                return;
+            }
+
+            // External queued skill finished: release lock and schedule next queued skill.
+            if (_affecting && IsExternalSkill(skillId))
+            {
+                _affecting = false;
+                _checking = false;
+                _delaying = _queuedSkills.Count > 0;
+                return;
+            }
+
+            if (skillId != base.SkillTemplateId)
             {
                 return;
             }
@@ -160,6 +189,24 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             if (base.IsDirect)
             {
                 TuifaAutoCastMailbox.NotifyForceAutoCast(base.CharacterId);
+                
+                // Populate queue with equipped external skills
+                _queuedSkills.Clear();
+                IReadOnlyList<short> attackSkills = base.CombatChar.GetCombatSkillList(AttackSkillEquipType);
+                for (int i = 0; i < ExternalSkillIds.Length; i++)
+                {
+                    short externalSkillId = (short)ExternalSkillIds[i];
+                    for (int j = 0; j < attackSkills.Count; j++)
+                    {
+                        if (attackSkills[j] == externalSkillId)
+                        {
+                            _queuedSkills.Add(externalSkillId);
+                            break;
+                        }
+                    }
+                }
+                
+                _delaying = true;
                 ShowSpecialEffectTips(0);
             }
             else
@@ -167,6 +214,71 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 _bonusHits = new HitOrAvoidInts();
                 _bonusPenetrations = new OuterAndInnerInts();
             }
+        }
+
+        private void OnCombatStateMachineUpdateEnd(DataContext context, CombatCharacter combatChar)
+        {
+            if (combatChar.GetId() != base.CharacterId)
+            {
+                return;
+            }
+
+            bool checking = _checking;
+            _checking = false;
+            if (!_delaying || _affecting || combatChar.StateMachine.GetCurrentStateType() != CombatCharacterStateType.Idle)
+            {
+                return;
+            }
+
+            _checking = true;
+            if (!checking)
+            {
+                return;
+            }
+
+            // Two-frame confirmation complete - now autocast exactly one queued external skill.
+            _delaying = false;
+
+            if (_queuedSkills.Count <= 0)
+            {
+                _affecting = false;
+                return;
+            }
+
+            // Yield to Tuifa9 priority and retry next frame.
+            if (Tuifa9.IsQueued(base.CharacterId))
+            {
+                _delaying = true;
+                return;
+            }
+
+            short nextSkillId = _queuedSkills[0];
+            _queuedSkills.RemoveAt(0);
+
+            if (DomainManager.Combat.CanCastSkill(base.CombatChar, nextSkillId, costFree: true, checkRange: true))
+            {
+                _affecting = true;
+                ShowSpecialEffectTips(0);
+                DomainManager.Combat.CastSkillFree(context, base.CombatChar, nextSkillId);
+                return; // One skill at a time.
+            }
+
+            // Not castable this time; continue queue next frame if any remain.
+            _affecting = false;
+            _delaying = _queuedSkills.Count > 0;
+        }
+
+        private static bool IsExternalSkill(short skillId)
+        {
+            for (int i = 0; i < ExternalSkillIds.Length; i++)
+            {
+                if (ExternalSkillIds[i] == skillId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void InvalidateBonusCache(DataContext context)
