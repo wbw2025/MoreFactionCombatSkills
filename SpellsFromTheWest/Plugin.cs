@@ -260,7 +260,7 @@ namespace FeaturesBoundToFuyu
     })]
     public static void OnCastSkillFreePatched(DataContext context, CombatCharacter character, short skillId, ECombatCastFreePriority priority)
     {
-        MoreFactionCombatSkillsBackend.Helpers.Events.RaiseCastSkillFree(context, character, skillId, priority);
+        MoreFactionCombatSkillsBackend.Helpers.MoreFactionCombarSkillsEvents.RaiseCastSkillFree(context, character, skillId, priority);
     }
 
 

@@ -7,7 +7,7 @@ namespace MoreFactionCombatSkillsBackend.Helpers
 {
     public delegate void OnCastSkillFree(DataContext context, CombatCharacter character, short skillId, ECombatCastFreePriority priority);
 
-    internal static class Events
+    internal static class MoreFactionCombarSkillsEvents
     {
         private static OnCastSkillFree _handlersCastSkillFree;
 
