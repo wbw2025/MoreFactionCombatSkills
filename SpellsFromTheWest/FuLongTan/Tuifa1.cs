@@ -93,16 +93,18 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                     continue;
                 }
 
-                if (!DomainManager.Combat.SilenceSkill(context, base.CombatChar, otherSkillId, SilenceFrames, 100))
-                {
-                    continue;
-                }
-
                 if (DomainManager.CombatSkill.TryGetElement_CombatSkills(new CombatSkillKey(base.CharacterId, otherSkillId), out GameData.Domains.CombatSkill.CombatSkill otherSkill))
                 {
                     totalHits += otherSkill.GetHitValue();
                     totalPenetrations += otherSkill.GetPenetrations();
                 }
+                else
+                {
+                    continue;
+                }
+                DomainManager.Combat.SilenceSkill(context, base.CombatChar, otherSkillId, SilenceFrames, 100);
+
+
 
                 anySilenced = true;
             }
@@ -145,6 +147,11 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 TuifaAutoCastMailbox.NotifyForceAutoCast(base.CharacterId);
                 ShowSpecialEffectTips(0);
             }
+            else
+            {
+                _bonusHits = new HitOrAvoidInts();
+                _bonusPenetrations = new OuterAndInnerInts();
+            }
         }
 
         private void InvalidateBonusCache(DataContext context)
@@ -167,17 +174,17 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             switch (dataKey.FieldId)
             {
                 case 32:
-                    return _bonusHits[0];
+                    return _bonusHits[0] + 1000000;
                 case 33:
-                    return _bonusHits[1];
+                    return _bonusHits[1] + 1;
                 case 34:
-                    return _bonusHits[2];
+                    return _bonusHits[2] + 1000000;
                 case 35:
-                    return _bonusHits[3];
+                    return _bonusHits[3] + 1;
                 case 44:
-                    return _bonusPenetrations.Outer;
+                    return _bonusPenetrations.Outer + 40000;
                 case 45:
-                    return _bonusPenetrations.Inner;
+                    return _bonusPenetrations.Inner + 40000;
                 default:
                     return 0;
             }
