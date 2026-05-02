@@ -95,7 +95,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             {
                 _delaying = false;
                 _affecting = true;
-                _queuedCharIds.Remove(base.CharacterId);
+                // _queuedCharIds entry is kept until the cast fully ends (see OnCastSkillEnd),
+                // so that IsQueued() stays true while Tuifa9 is casting and Tuifa1 keeps yielding.
                 ShowSpecialEffectTips(0);
                 DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
             }
@@ -132,6 +133,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             // Handle completion of Tuifa9 itself
             if (charId == base.CharacterId && skillId == base.SkillTemplateId)
             {
+                _queuedCharIds.Remove(base.CharacterId);
                 _affecting = false;
 
                 if (interrupted || power < MinPower)
