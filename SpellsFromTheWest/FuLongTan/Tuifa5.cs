@@ -10,8 +10,8 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
     // 踏残甲
-    //正练-该功法在敌人护甲失去共计3次耐久度时自动释放。若为自动释放，之后封禁自身2秒。发挥一成威力时，敌人的一件随机护甲失去2耐久度。
-    //逆练-该功法在自身护甲失去共计3次耐久度时自动释放.若为自动释放，之后封禁自身2秒。发挥一成威力时，敌人的一件随机护甲失去2耐久度。
+    //正练-该功法在敌人护甲失去共计3次耐久度时自动释放。若为自动释放，之后封禁自身2秒。发挥一成威力时，若运用者醉酒，敌人的一件随机护甲失去2耐久度。
+    //逆练-该功法在自身护甲失去共计3次耐久度时自动释放.若为自动释放，之后封禁自身2秒。发挥一成威力时，若运用者醉酒，敌人的一件随机护甲失去2耐久度。
     internal class Tuifa5 : CombatSkillEffectBase
     {
         private const int TriggerDurabilityLossCount = 3;
@@ -32,8 +32,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private int _durabilityLossCount;
 
-        private int _lastMailboxToken;
-
         public Tuifa5()
         {
         }
@@ -49,7 +47,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             _delaying = false;
             _affecting = false;
             _durabilityLossCount = 0;
-            _lastMailboxToken = TuifaAutoCastMailbox.GetToken(base.CharacterId);
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.RegisterHandler_CombatChangeDurability(OnCombatChangeDurability);
@@ -97,8 +94,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
-            TryScheduleMailboxAutoCast();
-
             bool checking = _checking;
             _checking = false;
             if (combatChar.NeedUseSkillFreeId >= 0 || !_delaying || _affecting || combatChar.StateMachine.GetCurrentStateType() != CombatCharacterStateType.Idle)
@@ -128,26 +123,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             else
             {
                 _delaying = false;
-            }
-        }
-
-        private void TryScheduleMailboxAutoCast()
-        {
-            if (_affecting || _delaying)
-            {
-                return;
-            }
-
-            int token = TuifaAutoCastMailbox.GetToken(base.CharacterId);
-            if (token == _lastMailboxToken)
-            {
-                return;
-            }
-
-            _lastMailboxToken = token;
-            if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
-            {
-                _delaying = true;
             }
         }
 

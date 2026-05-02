@@ -9,9 +9,9 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
     // 搜神腿
-    // 正练 发挥十成威力时，获得(10+精纯)总真气，并打乱自身的真气分布。
+    // 正练 发挥十成威力时，获得(10+精纯)总真气，并打乱自身的真气分布。若运用者醉酒，该数值额外增加50%。
     //       （每一项失去的真气和获得的真气均会触发对应效果）
-    // 逆练 发挥十成威力时，敌人失去(10+敌人精纯)总真气，并打乱敌人的真气分布。
+    // 逆练 发挥十成威力时，敌人失去(10+敌人精纯)总真气，并打乱敌人的真气分布。若运用者醉酒，该数值额外减少50%。
     //       （每一项失去的真气和获得的真气均会触发对应效果）
     internal class Tuifa6 : CombatSkillEffectBase
     {

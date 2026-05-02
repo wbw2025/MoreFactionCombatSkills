@@ -39,7 +39,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private bool _affecting;
 
-        private static readonly int[] ExternalSkillIds = { 42, 43, 44 };
+        private static readonly int[] ExternalSkillIds = { 4118, 4119, 4120, 4122, 4123, 4124, 4125, 469, 471, 475, 482, };
 
         private List<short> _queuedSkills;
 
@@ -188,8 +188,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
             if (base.IsDirect)
             {
-                TuifaAutoCastMailbox.NotifyForceAutoCast(base.CharacterId);
-                
                 // Populate queue with equipped external skills
                 _queuedSkills.Clear();
                 IReadOnlyList<short> attackSkills = base.CombatChar.GetCombatSkillList(AttackSkillEquipType);

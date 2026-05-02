@@ -30,8 +30,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private int _outerInjuryFrame;
 
-        private int _lastMailboxToken;
-
         public Tuifa3()
         {
         }
@@ -49,7 +47,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             _selfFrame = 0;
             _innerInjuryFrame = NoInjuryFrame;
             _outerInjuryFrame = NoInjuryFrame;
-            _lastMailboxToken = TuifaAutoCastMailbox.GetToken(base.CharacterId);
 
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_AddInjury(OnAddInjury);
@@ -108,7 +105,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             }
 
             _selfFrame++;
-            TryScheduleMailboxAutoCast();
 
             bool checking = _checking;
             _checking = false;
@@ -138,26 +134,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             else
             {
                 _delaying = false;
-            }
-        }
-
-        private void TryScheduleMailboxAutoCast()
-        {
-            if (_affecting || _delaying)
-            {
-                return;
-            }
-
-            int token = TuifaAutoCastMailbox.GetToken(base.CharacterId);
-            if (token == _lastMailboxToken)
-            {
-                return;
-            }
-
-            _lastMailboxToken = token;
-            if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
-            {
-                _delaying = true;
             }
         }
 
