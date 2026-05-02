@@ -33,15 +33,12 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private bool _affecting;
 
-        private int _lastMailboxToken;
-
 
         public override void OnEnable(DataContext context)
         {
             _checking = false;
             _delaying = false;
             _affecting = false;
-            _lastMailboxToken = TuifaAutoCastMailbox.GetToken(base.CharacterId);
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_AddInjury(OnAddInjury);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
@@ -86,8 +83,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
-            TryScheduleMailboxAutoCast();
-
             bool checking = _checking;
             _checking = false;
             if (combatChar.NeedUseSkillFreeId >= 0 || !_delaying || combatChar.StateMachine.GetCurrentStateType() != CombatCharacterStateType.Idle)
@@ -112,26 +107,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 {
                     _delaying = false;
                 }
-            }
-        }
-
-        private void TryScheduleMailboxAutoCast()
-        {
-            if (_affecting || _delaying)
-            {
-                return;
-            }
-
-            int token = TuifaAutoCastMailbox.GetToken(base.CharacterId);
-            if (token == _lastMailboxToken)
-            {
-                return;
-            }
-
-            _lastMailboxToken = token;
-            if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
-            {
-                _delaying = true;
             }
         }
 

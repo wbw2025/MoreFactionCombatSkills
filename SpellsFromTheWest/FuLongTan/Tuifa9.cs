@@ -14,7 +14,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
     // 衔尾踢
     //正练 - 该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则向敌人添加一个随机破绽。
-    //逆练 - 该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则为自己添加一个随机破绽并使得该功法威力+10%.
+    //逆练 - 该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则为自己添加一个随机破绽并使得该功法威力+10%,持续到战斗结束.
     internal class Tuifa9 : CombatSkillEffectBase
     {
         private const sbyte MinPower = 10;

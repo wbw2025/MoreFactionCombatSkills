@@ -11,8 +11,8 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
     // 空杯掷月式
-    //正练 - 该功法在自身饮酒时自动释放。发挥至少一成威力时，提高敌人的内息紊乱，相当于自身内息紊乱的十分之一。
-    //逆练 - 该功法在敌人使用任何物品时自动释放。发挥至少一成威力时，降低自身的10%的新增内息紊乱。
+    //正练 - 该功法在自身饮酒时自动释放。发挥至少一成威力时，若运用者醉酒，提高敌人的内息紊乱，相当于自身内息紊乱的十分之一。
+    //逆练 - 该功法在敌人使用任何物品时自动释放。发挥至少一成威力时，若运用者醉酒，降低自身的10%的新增内息紊乱。
     internal class Tuifa2 : CombatSkillEffectBase
     {
         private const sbyte MinPower = 10;
@@ -26,8 +26,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
         private bool _delaying;
 
         private bool _affecting;
-
-        private int _lastMailboxToken;
 
         public Tuifa2()
         {
@@ -43,7 +41,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             _checking = false;
             _delaying = false;
             _affecting = false;
-            _lastMailboxToken = TuifaAutoCastMailbox.GetToken(base.CharacterId);
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.RegisterHandler_EatingItem(OnEatingItem);
@@ -123,8 +120,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
-            TryScheduleMailboxAutoCast();
-
             bool checking = _checking;
             _checking = false;
             if (combatChar.NeedUseSkillFreeId >= 0 || !_delaying || _affecting || combatChar.StateMachine.GetCurrentStateType() != CombatCharacterStateType.Idle)
@@ -153,26 +148,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             else
             {
                 _delaying = false;
-            }
-        }
-
-        private void TryScheduleMailboxAutoCast()
-        {
-            if (_affecting || _delaying)
-            {
-                return;
-            }
-
-            int token = TuifaAutoCastMailbox.GetToken(base.CharacterId);
-            if (token == _lastMailboxToken)
-            {
-                return;
-            }
-
-            _lastMailboxToken = token;
-            if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
-            {
-                _delaying = true;
             }
         }
 
