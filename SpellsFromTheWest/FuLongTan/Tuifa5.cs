@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameData.Common;
 using GameData.DomainEvents;
 using GameData.Domains;
+using GameData.Domains.Character;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.Item;
@@ -140,6 +141,12 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             }
 
             if (interrupted || power < MinPower)
+            {
+                return;
+            }
+
+            bool isDrunk = base.CombatChar.GetCharacter().GetEatingItems().ContainsWine();
+            if (!isDrunk)
             {
                 return;
             }

@@ -165,6 +165,12 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
+            bool isDrunk = base.CombatChar.GetCharacter().GetEatingItems().ContainsWine();
+            if (!isDrunk)
+            {
+                return;
+            }
+
             if (base.IsDirect)
             {
                 int selfQiDisorder = base.CombatChar.GetCharacter().GetDisorderOfQi();

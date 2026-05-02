@@ -2,6 +2,7 @@
 using GameData.Common;
 using GameData.DomainEvents;
 using GameData.Domains;
+using GameData.Domains.Character;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect.CombatSkill;
@@ -17,6 +18,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
     {
         private const sbyte FullPower = 100;
         private const int NeiliTypeCount = 4;
+        private const int DrunkBonusPercent = 50;
 
         public Tuifa6()
         {
@@ -44,11 +46,18 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
 
+            bool isDrunk = base.CombatChar.GetCharacter().GetEatingItems().ContainsWine();
+
             if (base.IsDirect)
             {
                 // 正练: self gains (10 + own 精纯) total neili, distributed randomly across 4 types
                 int purity = base.CombatChar.GetCharacter().GetConsummateLevel();
                 int total = 10 + purity;
+                if (isDrunk)
+                {
+                    total += total * DrunkBonusPercent / 100;
+                }
+
                 int[] allocation = CreateRandomAllocation(total, NeiliTypeCount, context);
                 for (byte type = 0; type < NeiliTypeCount; type++)
                 {
@@ -64,6 +73,11 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 CombatCharacter enemy = base.CurrEnemyChar;
                 int purity = enemy.GetCharacter().GetConsummateLevel();
                 int total = 10 + purity;
+                if (isDrunk)
+                {
+                    total -= total * DrunkBonusPercent / 100;
+                }
+
                 int[] allocation = CreateRandomAllocation(total, NeiliTypeCount, context);
                 for (byte type = 0; type < NeiliTypeCount; type++)
                 {
