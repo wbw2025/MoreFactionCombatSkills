@@ -57,8 +57,12 @@ namespace FeaturesBoundToFuyu
             string directory = DomainManager.Mod.GetModDirectory(thisModIdStr);
             DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
             DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
-        }
 
+        }
+        public void AdvanceFinishHandler(DataContext context)
+        {
+            Install();
+        }
         private static void EnsureTypesArePreserved()
         {
             // Prevent tree-shaking/trimming from removing types loaded via reflection
@@ -93,21 +97,13 @@ namespace FeaturesBoundToFuyu
         }
         public override void OnEnterNewWorld()
         {
+            Events.UnRegisterHandler_AdvanceMonthFinish(AdvanceFinishHandler);
+            Events.RegisterHandler_AdvanceMonthFinish(AdvanceFinishHandler);
         }
         public override void OnLoadedArchiveData()
         {
-
-            bool isUninstall = false;
-            if (isUninstall)
-            {
-
-            }
-            else
-            {
-                Install();
-            }
-           
-
+            Events.UnRegisterHandler_AdvanceMonthFinish(AdvanceFinishHandler);
+            Events.RegisterHandler_AdvanceMonthFinish(AdvanceFinishHandler);
 
         }
         private void Install()
