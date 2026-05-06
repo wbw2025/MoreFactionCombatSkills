@@ -25,7 +25,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
         {
         }
         public Jianfa2(CombatSkillKey skillKey)
-            : base(skillKey, 4116)
+            : base(skillKey, 54116)
         {
         }
 

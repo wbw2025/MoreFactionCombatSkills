@@ -38,7 +38,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
         }
 
         public Tuifa5(CombatSkillKey skillKey)
-            : base(skillKey, 4122)
+            : base(skillKey, 54122)
         {
         }
 

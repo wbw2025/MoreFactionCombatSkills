@@ -26,7 +26,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         }
 
         public Qimen8(CombatSkillKey skillKey)
-            : base(skillKey, 4101)
+            : base(skillKey, 54101)
         {
         }
         public override void OnEnable(DataContext context)

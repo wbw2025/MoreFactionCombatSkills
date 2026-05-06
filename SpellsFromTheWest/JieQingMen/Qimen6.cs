@@ -31,7 +31,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         }
 
         public Qimen6(CombatSkillKey skillKey)
-            : base(skillKey, 4103)
+            : base(skillKey, 54103)
         {
         }
         ushort powerKey = 199;
