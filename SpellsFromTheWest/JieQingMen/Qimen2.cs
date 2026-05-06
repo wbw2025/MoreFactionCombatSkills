@@ -27,7 +27,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         }
 
         public Qimen2(CombatSkillKey skillKey)
-            : base(skillKey, 4107)
+            : base(skillKey, 54107)
         {
         }
 

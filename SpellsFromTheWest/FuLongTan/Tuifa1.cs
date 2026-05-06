@@ -48,7 +48,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
         }
 
         public Tuifa1(CombatSkillKey skillKey)
-            : base(skillKey, 4126)
+            : base(skillKey, 54126)
         {
         }
 
@@ -125,8 +125,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
                 if (DomainManager.CombatSkill.TryGetElement_CombatSkills(new CombatSkillKey(base.CharacterId, otherSkillId), out GameData.Domains.CombatSkill.CombatSkill otherSkill))
                 {
-                    totalHits += Helpers.Multiply(otherSkill.GetHitValue(), otherSkill.GetPower());
-                    totalPenetrations += Helpers.Multiply(otherSkill.GetPenetrations(), otherSkill.GetPower());
+                    totalHits += otherSkill.GetHitValue();
+                    totalPenetrations += otherSkill.GetPenetrations();
                 }
                 else
                 {
