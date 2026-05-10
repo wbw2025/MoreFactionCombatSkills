@@ -46,6 +46,12 @@ namespace FeaturesBoundToFuyu
                 harmony.UnpatchSelf();
             }
         }
+
+        public static int GetLanguageKey()
+        {
+            return 44; // Todo: implement for other languages
+        }
+
         private string thisModIdStr;
         public override void Initialize()
         {

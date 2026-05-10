@@ -8,13 +8,13 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
     // 阴阳神龙钻
-    // 正练：敌人同一时刻同时获得内伤和外伤时自动释放；自动释放后封禁2秒。
-    // 逆练：自身同一时刻同时获得内伤和外伤时自动释放；自动释放后封禁2秒。
+    // 正练：敌人同一时刻同时获得内伤和外伤时自动释放；自动释放后封禁2秒。若运用者醉酒且该功法为自动释放，该功法从90%施展。
+    // 逆练：自身同一时刻同时获得内伤和外伤时自动释放；自动释放后封禁2秒。若运用者醉酒且该功法为自动释放，该功法从90%施展。
     internal class Tuifa3 : CombatSkillEffectBase
     {
         private const int AutoCastSilenceFrames = 120;
 
-        private const int PairWindowFrames = 0;
+        private const int PairWindowFrames = 2;
 
         private const int NoInjuryFrame = -1000000;
 
