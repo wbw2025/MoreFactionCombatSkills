@@ -126,7 +126,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
                 if (mySha > 0)
                 {
                     DomainManager.Combat.RemoveTrick(context, base.CombatChar, ShaTrick, (byte)mySha);
-                    DomainManager.Combat.AppendDieDefeatMark(context, base.CurrEnemyChar, SkillKey, mySha);
+                    base.CurrEnemyChar.AddDieMark(context, SkillKey, mySha);
                 }
             }
             else
@@ -135,7 +135,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
                 if (enemySha > 0)
                 {
                     DomainManager.Combat.RemoveTrick(context, base.CurrEnemyChar, ShaTrick, (byte)enemySha, removedByAlly: false);
-                    DomainManager.Combat.AppendDieDefeatMark(context, base.CurrEnemyChar, SkillKey, enemySha);
+                    base.CurrEnemyChar.AddDieMark(context, SkillKey, enemySha);
                     
 
                 }

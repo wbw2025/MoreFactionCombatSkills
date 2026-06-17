@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -16,6 +16,18 @@
     </Reference>
     <Reference Include="GameData">
       <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Adventure">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.Adventure.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.ArchiveData">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.ArchiveData.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Combat.Animation">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.Combat.Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData.Combat.Cricket">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\Backend\GameData.Combat.Cricket.dll</HintPath>
     </Reference>
     <Reference Include="GameData.Combat.Math">
       <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\GameData.Combat.Math.dll</HintPath>
@@ -43,6 +55,12 @@
     </Reference>
     <Reference Include="TaiwuModdingLib">
       <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\TaiwuModdingLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 

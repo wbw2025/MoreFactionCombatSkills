@@ -114,7 +114,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             if (convertedCount > 0)
             {
                 // commit injuries changes
-                DomainManager.Combat.SetInjuries(context, base.CurrEnemyChar, injuries);
+                base.CurrEnemyChar.SetInjuries(context, injuries);
                 base.CurrEnemyChar.SetOldInjuries(oldInjuries, context);
 
                 // Apply poison per converted wound
