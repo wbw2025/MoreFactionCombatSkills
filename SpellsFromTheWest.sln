@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreFactionCombatSkillsBack
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreFactionCombatSkillsFrontend", "SpellsFromTheWestFrontend\MoreFactionCombatSkillsFrontend.csproj", "{48B03AD8-C1C0-4D94-9140-D1B433F88769}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreFactionCombatSkillsBackend.Tests", "SpellsFromTheWest.Tests\MoreFactionCombatSkillsBackend.Tests.csproj", "{C709D98A-01E4-2B51-5E41-90724A4376D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,14 @@ Global
 		{48B03AD8-C1C0-4D94-9140-D1B433F88769}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48B03AD8-C1C0-4D94-9140-D1B433F88769}.Release|x64.ActiveCfg = Release|x64
 		{48B03AD8-C1C0-4D94-9140-D1B433F88769}.Release|x64.Build.0 = Release|x64
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Debug|x64.Build.0 = Debug|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Release|x64.ActiveCfg = Release|Any CPU
+		{C709D98A-01E4-2B51-5E41-90724A4376D7}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

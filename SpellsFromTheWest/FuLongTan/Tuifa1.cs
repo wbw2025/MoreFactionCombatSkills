@@ -54,17 +54,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
-
-            try
-            {
-                int[] ints = new int[4];
-                ints[10] = 1;
-            }
-            catch
-            {
-                AdaptableLog.Info("Tuifa1");
-            }
-
             _bonusActive = false;
             _bonusHits = default;
             _bonusPenetrations = default;

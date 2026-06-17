@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TaiwuModdingLib.Core.Plugin;
+using YamlDotNet.Core.Tokens;
 
 namespace FeaturesBoundToFuyu
 {
@@ -26,6 +27,7 @@ namespace FeaturesBoundToFuyu
                 harmony.UnpatchSelf();
             }
         }
+        public static int LanguageKey { get; private set; }
 
         public override void Initialize()
         {
@@ -41,12 +43,23 @@ namespace FeaturesBoundToFuyu
             //AddCharacterFeature.DoAdd();
             ModInfo modInfo = ModManager.GetModInfo(this.ModIdStr);
             string directory = modInfo.DirectoryName;
-            
-            DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
+
+            int langSettings = 0;
+            ModManager.GetSetting(base.ModIdStr, "Language", ref langSettings);
+            if (langSettings == 1)
+            {
+                LanguageKey = 44;
+            }
+            else
+            {
+                LanguageKey = 86;
+            }
             DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
-            
+            DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
+
+            AdaptableLog.Info($"SpellsFromTheWest Frontend initialized. LanguageKey: {LanguageKey}.");
+
 
         }
-
     }
 }

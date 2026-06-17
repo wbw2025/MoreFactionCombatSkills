@@ -1,5 +1,6 @@
 ﻿using GameData.Domains.Character;
 using GameData.Domains.Combat;
+using GameData.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,10 @@ namespace MoreFactionCombatSkillsBackend.Helpers
 {
     internal class Helpers
     {
+        public static void Break()
+        {
+                        throw new NotImplementedException();
+        }
         public static int CountTricks(CombatCharacter combatChar, sbyte trick)
         {
             var tricks = combatChar.GetTricks();

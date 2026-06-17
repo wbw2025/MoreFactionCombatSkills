@@ -1,6 +1,7 @@
 using GameData.Common;
 using GameData.DomainEvents;
 using GameData.Domains;
+using GameData.Domains.Character;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect.CombatSkill;
@@ -51,6 +52,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_AddInjury(OnAddInjury);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
+
         }
 
         public override void OnDisable(DataContext context)
@@ -58,6 +61,15 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.UnRegisterHandler_AddInjury(OnAddInjury);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
+        }
+
+        private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)
+        {
+            if (charId == base.CharacterId && skillId == base.SkillTemplateId && base.CombatChar.GetAutoCastingSkill() && base.CombatChar.GetCharacter().GetEatingItems().ContainsWine())
+            {
+                DomainManager.Combat.ChangeSkillPrepareProgress(base.CombatChar, base.CombatChar.SkillPrepareTotalProgress * 90 / 100);
+            }
         }
 
         private void OnAddInjury(DataContext context, CombatCharacter character, sbyte bodyPart, bool isInner, sbyte value, bool changeToOld)

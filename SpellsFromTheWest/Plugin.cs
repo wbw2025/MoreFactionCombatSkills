@@ -9,6 +9,7 @@ using GameData.Domains.Building;
 using GameData.Domains.Character;
 using GameData.Domains.Character.Creation;
 using GameData.Domains.Combat;
+using GameData.Domains.Combat.Ai;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.Global;
 using GameData.Domains.Item;
@@ -47,10 +48,8 @@ namespace FeaturesBoundToFuyu
             }
         }
 
-        public static int GetLanguageKey()
-        {
-            return 44; // Todo: implement for other languages
-        }
+        public static int LanguageKey { get; private set; }
+        public static bool LearnAll { get; private set; } = false;
 
         private string thisModIdStr;
         public override void Initialize()
@@ -61,9 +60,24 @@ namespace FeaturesBoundToFuyu
             EnsureTypesArePreserved();
 
             string directory = DomainManager.Mod.GetModDirectory(thisModIdStr);
+            int langSettings = 0;
+            DomainManager.Mod.GetSetting(base.ModIdStr, "Language", ref langSettings);
+            bool learnAll = false;
+            DomainManager.Mod.GetSetting(base.ModIdStr, "LearnAll", ref learnAll);
+            LearnAll = learnAll;
+            if (langSettings == 1)
+            {
+                LanguageKey = 44;
+            }
+            else
+            {
+                LanguageKey = 86;
+            }
+
             DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
             DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
 
+            AdaptableLog.Info($"SpellsFromTheWest Frontend initialized. LanguageKey: {LanguageKey}.");
         }
         public void AdvanceFinishHandler(DataContext context)
         {
@@ -112,16 +126,36 @@ namespace FeaturesBoundToFuyu
             Events.RegisterHandler_AdvanceMonthFinish(AdvanceFinishHandler);
 
         }
+        private void learn(DataContext context, short TemplateId)
+        {
+            if (!DomainManager.Taiwu.TryGetElement_CombatSkills(TemplateId, out var skillInfo))
+            {
+                DomainManager.Taiwu.TaiwuLearnCombatSkill(context, TemplateId, ushort.MaxValue);
+            }
+            //else
+            //{
+            //    for (byte i = 0; i < 15; i++)
+            //    {
+            //        skillInfo.SetBookPageReadingProgress(i, 100);
+
+            //    }
+            //}
+        }
         private void Install()
         {
             foreach (var skill in DataConfigAppenderHelpers.CombatSkillItems)
             {
                 var taiwu = DomainManager.Taiwu.GetTaiwu();
                 DataContext context = DataContextManager.GetCurrentThreadDataContext();
-                if (!DomainManager.Taiwu.TryGetElement_CombatSkills(skill.TemplateId, out var _))
+                learn(context, skill.TemplateId);
+            }
+            if (LearnAll)
+            {
+                for (int i = 0; i < 722; i++)
                 {
-                    DomainManager.Taiwu.TaiwuLearnCombatSkill(context, skill.TemplateId, ushort.MaxValue);
+                    learn(DataContextManager.GetCurrentThreadDataContext(), (short)i);
                 }
+            
             }
         }
 

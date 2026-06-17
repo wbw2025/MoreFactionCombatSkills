@@ -9,11 +9,22 @@ using System.IO;
 using System.Reflection;
 using YamlDotNet.RepresentationModel;
 using System.Text;
+using System.Linq;
+using MoreFactionCombatSkillsBackend.Helpers;
 
 namespace FeaturesBoundToFuyu
 {
     internal class DataConfigAppender
     {
+        internal static Dictionary<int, Dictionary<string, object>> ParseYamlTopLevelObjectsForTesting(string yaml)
+        {
+            return ParseYamlTopLevelObjects(yaml);
+        }
+
+        internal static void ApplyChangesForTesting<TItem>(TItem configItem, Dictionary<string, object> changes, int languageKey, params string[] ignoredKeys)
+        {
+            ApplyChanges(configItem, changes, languageKey, ignoredKeys);
+        }
 
         public static void LoadSpecialEffectsFromYamlFile(string yamlPath)
         {
@@ -221,6 +232,7 @@ namespace FeaturesBoundToFuyu
                 {
                     changeSet = new PendingLocalizedChangeSet();
                     pendingChanges[memberName] = changeSet;
+
                 }
 
                 var pendingChange = new PendingChange(change.Key, memberName, change.Value);
@@ -230,9 +242,10 @@ namespace FeaturesBoundToFuyu
                     continue;
                 }
 
+
                 changeSet.BaseChange = pendingChange;
             }
-
+            
             return pendingChanges;
         }
 
@@ -285,10 +298,14 @@ namespace FeaturesBoundToFuyu
 
         private static void ApplyChanges<TItem>(TItem configItem, Dictionary<string, object> changes, params string[] ignoredKeys)
         {
+            ApplyChanges(configItem, changes, FeaturesBoundToFuyuPlugin.LanguageKey, ignoredKeys);
+        }
+
+        private static void ApplyChanges<TItem>(TItem configItem, Dictionary<string, object> changes, int languageKey, params string[] ignoredKeys)
+        {
             var ignoredKeySet = new HashSet<string>(ignoredKeys, StringComparer.OrdinalIgnoreCase);
             var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase;
             Type targetType = configItem.GetType();
-            int languageKey = FeaturesBoundToFuyuPlugin.GetLanguageKey();
             Dictionary<string, PendingLocalizedChangeSet> pendingChanges = BuildPendingChanges(changes, ignoredKeySet);
 
             foreach (var pair in pendingChanges)

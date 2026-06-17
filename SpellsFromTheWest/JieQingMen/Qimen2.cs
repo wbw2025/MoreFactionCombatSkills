@@ -57,7 +57,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             {
                 count = tricks.Tricks.Sum((p)=>(p.Value == wu || p.Value == sha? 1 : 0));
             }
-            if ((IsDirect && count >= 5) || (!IsDirect && count >= 8))
+            if ((IsDirect && count >= 8) || (!IsDirect && count >= 8))
             {
                 _delaying = true;
 
@@ -113,27 +113,28 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             }
             // idle: CombatCharacterStateType.Idle 
             _checking = true;
-            if (checking)
+            if (!checking)
             {
-                if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
-                {
-                    _delaying = false;
-                    _affecting = true;
-                    if (IsDirect)
-                    {
-                        DomainManager.Combat.RemoveTrick(context, CombatChar, sha, (byte)1, true);
-                    }
-                    else
-                    {
-                        DomainManager.Combat.RemoveTrick(context, EnemyChar, sha, (byte)2, false);
-                    }
-                    DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
+                return;
+            }
 
+            if (DomainManager.Combat.CanCastSkill(base.CombatChar, base.SkillTemplateId, costFree: true, checkRange: true))
+            {
+                _delaying = false;
+                _affecting = true;
+                if (IsDirect)
+                {
+                    DomainManager.Combat.RemoveTrick(context, CombatChar, sha, (byte)1, true);
                 }
+                else
+                {
+                    DomainManager.Combat.RemoveTrick(context, EnemyChar, sha, (byte)2, false);
+                }
+                DomainManager.Combat.CastSkillFree(context, base.CombatChar, base.SkillTemplateId);
+
             }
             else
             {
-                _checking = false;
                 _delaying = false;
             }
 
