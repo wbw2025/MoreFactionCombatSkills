@@ -71,7 +71,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
                 return;
             }
             // TODO: check if Tuifa9 is queued.
-            if (false)
+            if (Tuifa9.IsQueued(base.CharacterId))
             {
                 return;
             }

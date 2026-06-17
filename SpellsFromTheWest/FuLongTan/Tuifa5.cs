@@ -50,24 +50,24 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             _durabilityLossCount = 0;
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
-            Events.RegisterHandler_CombatChangeDurability(OnCombatChangeDurability);
+            Events.RegisterHandler_ChangeDurabilityToZero(OnChangeDurabilityToZero);
         }
 
         public override void OnDisable(DataContext context)
         {
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
-            Events.UnRegisterHandler_CombatChangeDurability(OnCombatChangeDurability);
+            Events.UnRegisterHandler_ChangeDurabilityToZero(OnChangeDurabilityToZero);
         }
 
-        private void OnCombatChangeDurability(DataContext context, CombatCharacter character, ItemKey itemKey, int delta)
+        private void OnChangeDurabilityToZero(DataContext context, CombatCharacter character, ItemKey itemKey)
         {
             if (_affecting || _delaying)
             {
                 return;
             }
 
-            if (delta >= 0 || itemKey.ItemType != ArmorItemType)
+            if (itemKey.ItemType != ArmorItemType)
             {
                 return;
             }

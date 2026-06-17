@@ -57,8 +57,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
             if (attackerId == base.CharacterId && stackcount > 0 && Jianfa9.SkillIsFoWang(combatSkillId))
             {
                 int mindDamageValue = (int)(damageValue * (IsDirect ? 0.33 : 0.75) * stackcount);
-                CombatContext combatContext = CombatContext.Create(CombatChar, EnemyChar, -1, combatSkillId, -1);
-                DomainManager.Combat.AddMindDamage(combatContext, mindDamageValue);
+                EnemyChar.AddMindDamage(context, mindDamageValue, combatSkillId);
             }
         }
 
