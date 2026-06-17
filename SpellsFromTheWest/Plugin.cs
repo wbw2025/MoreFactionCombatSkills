@@ -112,7 +112,7 @@ namespace FeaturesBoundToFuyu
                     continue;
                 }
 
-                short[] addValueList = new short[112];
+                short[] addValueList = new short[161];
                 Array.Clear(addValueList, 0, addValueList.Length);
                 foreach (PropertyAndValue addProperty in addPropertyList)
                 {
@@ -126,6 +126,7 @@ namespace FeaturesBoundToFuyu
             }
 
             AccessTools.Method(typeof(CombatSkillDomain), "InitializeLearnableCombatSkillTemplateIds")?.Invoke(null, null);
+            PlayerCastBossSkills.Initialize();
 
             return false;
         }

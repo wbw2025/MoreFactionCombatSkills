@@ -60,7 +60,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             }
 
             bool addInner = context.Random.Next(50) < 100;
-            DomainManager.Combat.AddRandomInjury(context, defender, addInner, 1, 1, changeToOld: true, -1);
+            defender.AddRandomInjury(context, addInner, 1, changeToOld: true);
             ShowSpecialEffectTips(0);
         }
     }
