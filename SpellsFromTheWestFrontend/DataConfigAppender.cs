@@ -158,8 +158,6 @@ namespace FeaturesBoundToFuyu
             if (sourceItem == null)
                 throw new InvalidOperationException($"Source SpecialEffectItem {templateID} does not exist.");
 
-            EnsureExtraTemplateId(targetTemplateId, SpecialEffect.Instance.Count, nameof(SpecialEffectItem));
-
             SpecialEffectItem copiedItem = sourceItem.Duplicate(targetTemplateId);
             ApplyChanges(copiedItem, changes, "TemplateId", "NewTemplateId");
             SaveSpecialEffectItem(copiedItem);
@@ -176,8 +174,6 @@ namespace FeaturesBoundToFuyu
             if (sourceItem == null)
                 throw new InvalidOperationException($"Source CombatSkillItem {templateID} does not exist.");
 
-            EnsureExtraTemplateId(targetTemplateId, CombatSkill.Instance.Count, nameof(CombatSkillItem));
-
             CombatSkillItem copiedItem = sourceItem.Duplicate(targetTemplateId);
             ApplyChanges(copiedItem, changes, "TemplateId", "NewTemplateId");
             SaveCombatSkillItem(copiedItem);
@@ -193,8 +189,6 @@ namespace FeaturesBoundToFuyu
             SkillBookItem sourceItem = SkillBook.Instance[(short)templateID];
             if (sourceItem == null)
                 throw new InvalidOperationException($"Source SkillBookItem {templateID} does not exist.");
-
-            EnsureExtraTemplateId(targetTemplateId, SkillBook.Instance.Count, nameof(SkillBookItem));
 
             SkillBookItem copiedItem = sourceItem.Duplicate(targetTemplateId);
             ApplyChanges(copiedItem, changes, "TemplateId", "NewTemplateId");
@@ -234,12 +228,6 @@ namespace FeaturesBoundToFuyu
                 return Convert.ToInt32(templateId);
 
             throw new ArgumentOutOfRangeException("changes must contain NewTemplateId or TemplateId for the new modded item.");
-        }
-
-        private static void EnsureExtraTemplateId(int templateId, int baseConfigCount, string itemTypeName)
-        {
-            if (templateId < baseConfigCount)
-                throw new ArgumentOutOfRangeException($"{itemTypeName} template id {templateId} is inside the base config range. Use a new id reserved for modded items.");
         }
 
         private static object ResolveBangReference(string key, object value, object configInstance)

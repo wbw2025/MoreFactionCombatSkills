@@ -1,0 +1,841 @@
+# 0  : Strength,臀力
+# 1  : Dexterity,灵敏
+# 2  : Concentration,定力
+# 3  : Vitality,体质
+# 4  : Energy,根骨
+# 5  : Intelligence,悟性
+# 6  : HitRateStrength,
+# 7  : HitRateTechnique,
+# 8  : HitRateSpeed,
+# 9  : HitRateMind,
+# 10 : PenetrateOfOuter,
+# 11 : PenetrateOfInner,
+# 12 : AvoidRateStrength,
+# 13 : AvoidRateTechnique,
+# 14 : AvoidRateSpeed,
+# 15 : AvoidRateMind,
+# 16 : PenetrateResistOfOuter,
+# 17 : PenetrateResistOfInner,
+# 18 : RecoveryOfStance,
+# 19 : RecoveryOfBreath,
+# 20 : MoveSpeed,
+# 21 : RecoveryOfFlaw,
+# 22 : CastSpeed,
+# 23 : RecoveryOfBlockedAcupoint,
+# 24 : WeaponSwitchSpeed,
+# 25 : AttackSpeed,
+# 26 : InnerRatio,
+# 27 : RecoveryOfQiDisorder,
+# 28 : ResistOfHotPoison,
+# 29 : ResistOfGloomyPoison,
+# 30 : ResistOfColdPoison,
+# 31 : ResistOfRedPoison,
+# 32 : ResistOfRottenPoison,
+# 33 : ResistOfIllusoryPoison,
+# 34 : QualificationMusic,琴天资
+# 35 : QualificationChess,棋
+# 36 : QualificationPoem,书
+# 37 : QualificationPainting,画
+# 38 : QualificationMath, 
+# 39 : QualificationAppraisal,品鉴
+# 40 : QualificationForging,
+# 41 : QualificationWoodworking,
+# 42 : QualificationMedicine,
+# 43 : QualificationToxicology,
+# 44 : QualificationWeaving,
+# 45 : QualificationJade,
+# 46 : QualificationTaoism,
+# 47 : QualificationBuddhism,
+# 48 : QualificationCooking,
+# 49 : QualificationEclectic,杂
+# 50 : AttainmentMusic,琴造纸
+# 51 : AttainmentChess,棋
+# 52 : AttainmentPoem,书
+# 53 : AttainmentPainting,画
+# 54 : AttainmentMath,术
+# 55 : AttainmentAppraisal,品鉴
+# 56 : AttainmentForging,锻造
+# 57 : AttainmentWoodworking,木
+# 58 : AttainmentMedicine,医
+# 59 : AttainmentToxicology,毒
+# 60 : AttainmentWeaving,织锦
+# 61 : AttainmentJade,玉
+# 62 : AttainmentTaoism,道
+# 63 : AttainmentBuddhism,佛
+# 64 : AttainmentCooking,厨
+# 65 : AttainmentEclectic,杂
+# 66 : QualificationNeigong,
+# 67 : QualificationPosing,
+# 68 : QualificationStunt,
+# 69 : QualificationFistAndPalm,
+# 70 : QualificationFinger,
+# 71 : QualificationLeg,
+# 72 : QualificationThrow,
+# 73 : QualificationSword,
+# 74 : QualificationBlade,
+# 75 : QualificationPolearm,
+# 76 : QualificationSpecial,
+# 77 : QualificationWhip,
+# 78 : QualificationControllableShot,
+# 79 : QualificationCombatMusic,
+# 80 : AttainmentNeigong,内功 造纸
+# 81 : AttainmentPosing,身法
+# 82 : AttainmentStunt,绝技
+# 83 : AttainmentFistAndPalm,拳掌
+# 84 : AttainmentFinger,指法
+# 85 : AttainmentLeg,腿
+# 86 : AttainmentThrow,暗器
+# 87 : AttainmentSword,剑法
+# 88 : AttainmentBlade,刀法
+# 89 : AttainmentPolearm,长兵
+# 90 : AttainmentSpecial,奇门
+# 91 : AttainmentWhip,软饼
+# 92 : AttainmentControllableShot,御射
+# 93 : AttainmentCombatMusic,音
+# 94 : PersonalityCalm,冷静
+# 95 : PersonalityClever,聪颖
+# 96 : PersonalityEnthusiastic,热情
+# 97 : PersonalityBrave,勇壮
+# 98 : PersonalityFirm,坚毅
+# 99 : PersonalityLucky,富源
+# 100: PersonalityPerceptive,合到
+# 101: Attraction,魅力
+# 102: Fertility,生育
+# 103: HobbyChangingPeriod,
+# 104: MaxHealth,
+# 105: MaxNeili,
+# 106: AttainmentDivinePower,神术造纸
+# 107: AttainmentGhostTechnique,鬼术造纸
+# 108: LifeSkillBookReadEfficiency,
+# 109: CombatSkillBookReadEfficiency,
+# 110: CombatSkillProficiency,
+# 111: CricketLuckPoint,
+
+
+4100: 
+ TemplateId: 658
+ Grade: 0
+ Name: "星罗钉"
+ Desc: "(暂无描述）"
+ 44Desc: "(no description)"
+ Type: 10 # 奇门
+ DirectEffectID: 8200 # *2
+ ReverseEffectID: 8201 # *2+1
+ # Icon: "sp_icon_combatskill_13_10" 
+ SectId: 13 # jieqing
+ FiveElements: 5 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ InheritAttainmentAdiitionRate: 1 # 98 品是1，76是2， ...， 1品是5
+ UsingRequirement: [[1,50], [2,25], [5,25], [90, 80], [54, 100], [51, 50]] # 见文档最后，注意第一个是id，第二个是数值
+ PrepareTotalProgress: 12000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 25 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 260
+ DistanceAdditionWhenCast: 10 # 攻击范围+1
+ TrickCost: [[4,1],[5,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [0,0,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 50 #命中
+ PerHitDamageRateDistribution: [30, 30, 40, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 1 
+ Poisons: [300,1, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇， 注意1为生，而不是从0开始)
+ 44Name: "Star-Studded Pin"
+ 
+4101: 
+ TemplateId: 659
+ Name: "封喉索"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,55], [2,25], [5,25], [90, 120], [54, 150], [51, 70]] # 见文档最后，注意第一个是id，第二个是数值
+ DirectEffectID: 8202 # *2
+ ReverseEffectID: 8203 # *2+1
+ PrepareTotalProgress: 13000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 25 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 250
+ DistanceAdditionWhenCast: 20 # 攻击范围+2
+ TrickCost: [[4,2]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [0,0,1,0,0,0,0] #胸 腹 头 手 手 腿 腿
+ TotalHit: 100 #命中
+ PerHitDamageRateDistribution: [10, 40, 50, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "Cutthroat Cord"
+ 
+4102: 
+ TemplateId: 660
+ Name: "幽冥扇"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,60], [2,25], [5,25], [90, 160], [54, 200], [51, 100]] 
+ DirectEffectID: 8204 # *2
+ ReverseEffectID: 8205 # *2+1
+ PrepareTotalProgress: 14000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 100 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 30
+ Penetrate: 330
+ DistanceAdditionWhenCast: 20 # 攻击范围+2
+ TrickCost: [[7,1],[4,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [10,0,0,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 80 #命中
+ PerHitDamageRateDistribution: [0, 30, 70, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "Netherworld Fan"
+ 
+4103: 
+ TemplateId: 661
+ Name: "七杀符"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,70], [2,40], [5,40], [90, 200], [54, 250], [51, 120]] 
+ DirectEffectID: 8206 # *2
+ ReverseEffectID: 8207 # *2+1
+ PrepareTotalProgress: 15000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 10 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 510
+ DistanceAdditionWhenCast: 10 
+ TrickCost: [[4,3]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [10,10,10,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 90 #命中
+ PerHitDamageRateDistribution: [0, 30, 70, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "Seven Kills Talisman"
+ 
+4104: 
+ TemplateId: 662
+ Name: "九星落"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,75], [2,40], [5,40], [90, 220], [54, 300], [51, 150]] 
+ DirectEffectID: 8208 # *2
+ ReverseEffectID: 8209 # *2+1
+ PrepareTotalProgress: 16000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 50 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 510
+ DistanceAdditionWhenCast: 10 
+ TrickCost: [[4,3]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [10,10,10,10,10,0,0] #胸 腹 头 手 手 腿 腿
+ TotalHit: 100 #命中
+ PerHitDamageRateDistribution: [0, 10, 90, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "Nine Starburst"
+ 
+4105: 
+ TemplateId: 663
+ DirectEffectID: 8210 # *2
+ ReverseEffectID: 8211 # *2+1
+ Name: "影里花"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,80], [2,40], [5,40], [90, 260], [54, 350], [51, 170]] 
+ PrepareTotalProgress: 17000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 40 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 770
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[4,3]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [80,10,10,0,0,0,0] #胸 腹 头 手 手 腿 腿
+ TotalHit: 110 #命中
+ PerHitDamageRateDistribution: [10, 40, 50, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 800,2, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "Flower in the Shadow"
+ 
+4106: 
+ TemplateId: 664
+ DirectEffectID: 8212 # *2
+ ReverseEffectID: 8213 # *2+1
+ Name: "索血诏"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,90], [2,55], [5,55], [90, 300], [54, 400], [51, 200]] 
+ PrepareTotalProgress: 18000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 600
+ DistanceAdditionWhenCast: 10 # 攻击范围+2
+ TrickCost: [[4,3],[5,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [10,10,1,0,0,0,0] #胸 腹 头 手 手 腿 腿
+ TotalHit: 140 #命中
+ PerHitDamageRateDistribution: [40, 20, 40, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 0,0, 0,0, 0,0, 600,3, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "Blood-Seeking Decree"
+
+4107: 
+ TemplateId: 665
+ DirectEffectID: 8214 # *2
+ ReverseEffectID: 8215 # *2+1
+ Name: "千踪百解"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 5 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,95], [2,55], [5,55], [90, 340], [54, 450], [51, 220]]
+ PrepareTotalProgress: 19000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 20 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 720
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[4,4]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [0,0,0,10,10,40,40] #胸 腹 头 手 手 腿 腿
+ TotalHit: 170 #命中
+ PerHitDamageRateDistribution: [20, 20, 60, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0 
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "End of Thousand Trails"
+ 
+4108: 
+ TemplateId: 674
+ Grade: 8
+ Icon: "sp_icon_combatskill_2_10"
+ DirectEffectID: 8216 # *2
+ ReverseEffectID: 8217 # *2+1
+ Name: "万象俱寂"
+ Desc: "(暂无描述）"
+ Type: 10 # 奇门
+ SectId: 13 # jieqing
+ FiveElements: 2 #水 （5混）
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[1,100], [2,55], [5,55], [90, 400], [54, 500], [51, 250]]
+ PrepareTotalProgress: 20000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ # MostFittingWeaponId: 0
+ BaseInnerRatio: 30 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 40
+ Penetrate: 870
+ DistanceAdditionWhenCast: 20 # 攻击范围+2
+ TrickCost: [[4,3],[7,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [30,20,10,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 200 #命中
+ PerHitDamageRateDistribution: [0, 50, 50, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 1
+ Poisons: [0,0, 0,0, 1200,3, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ 44Desc: "(no description)"
+ 44Name: "The Universe Silent"
+
+ 
+4109: 
+ TemplateId: 541
+ Grade: 0
+ DirectEffectID: 8218 # *2
+ ReverseEffectID: 8219 # *2+1
+ Name: "佛王之剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 50], [3, 25], [87, 100], [63, 80], [55, 40]]
+ PrepareTotalProgress: 26000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 20
+ Penetrate: 400
+ DistanceAdditionWhenCast: 5
+ TrickCost: [[3,1],[5,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [30,40,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 50 #命中
+ PerHitDamageRateDistribution: [60, 20, 20, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Sword of the Buddha King"
+4110: 
+ TemplateId: 542
+ Grade: 1
+ DirectEffectID: 8220 # *2
+ ReverseEffectID: 8221 # *2+1
+ Name: "降魔剑"
+ Desc: "(暂无描述）" 
+ UsingRequirement: [[0, 55], [3, 30], [87, 150], [63, 120], [55, 60]]
+ PrepareTotalProgress: 24000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 20
+ Penetrate: 440
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[3, 2]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [10,30,0,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 60 #命中
+ PerHitDamageRateDistribution: [50, 40, 10, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkFlawEffect: 0
+ HasAtkAcupointEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Demon-Subduing Sword"
+4111: 
+ TemplateId: 543
+ Grade: 2
+ DirectEffectID: 8222 # *2
+ ReverseEffectID: 8223 # *2+1
+ Name: "断罪剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 60], [3, 35], [87, 200], [63, 160], [55, 80]]
+
+ PrepareTotalProgress: 24500 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 10
+ Penetrate: 480
+ HasAtkFlawEffect: 1
+ DistanceAdditionWhenCast: 5
+ TrickCost: [[3,2]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [50,20,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 70 #命中
+ PerHitDamageRateDistribution: [50, 30, 10, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Judgment Sword"
+4112: 
+ TemplateId: 544
+ Grade: 3
+ DirectEffectID: 8224 # *2
+ ReverseEffectID: 8225 # *2+1
+ Name: "五智剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 65], [3, 40], [87, 250], [63, 200], [55, 100]]
+ PrepareTotalProgress: 25000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 20
+ Penetrate: 580
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[3,2],[5,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [30,40,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 100 #命中
+ PerHitDamageRateDistribution: [60, 20, 20, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkFlawEffect: 0
+ HasAtkAcupointEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Five Wisdoms Sword"
+4113: 
+ TemplateId: 545
+ Grade: 4
+ DirectEffectID: 8226 # *2
+ ReverseEffectID: 8227 # *2+1
+ Name: "圆觉剑"
+ UsingRequirement: [[0, 70], [3, 45], [87, 300], [63, 240], [55, 120]]
+ Desc: "(暂无描述）"
+ PrepareTotalProgress: 25500 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 20
+ Penetrate: 620
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[3,3]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [5,5,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 110 #命中
+ PerHitDamageRateDistribution: [70, 20, 10, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkFlawEffect: 0
+ HasAtkAcupointEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Sword of full Enlightenment"
+4114: 
+ TemplateId: 546
+ Grade: 5
+ DirectEffectID: 8228 # *2
+ ReverseEffectID: 8229 # *2+1
+ Name: "波罗蜜多剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 75], [2, 50], [87, 350], [63, 280], [55, 140]]
+ PrepareTotalProgress: 26000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 25
+ Penetrate: 720
+ DistanceAdditionWhenCast: 20
+ TrickCost: [[3,2],[5,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [10,10,10,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 120 #命中
+ PerHitDamageRateDistribution: [50, 40, 10, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 1
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Paramita Sword"
+4115: 
+ TemplateId: 547
+ Grade: 6
+ DirectEffectID: 8230 # *2
+ ReverseEffectID: 8231 # *2+1
+ Name: "大黑天凶剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 80], [2, 55], [87, 400], [63, 320], [55, 160]]
+ PrepareTotalProgress: 26500 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 20
+ Penetrate: 780
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[3,3],[5,1]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [30,50,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 160 #命中
+ PerHitDamageRateDistribution: [40, 40, 20, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 1
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Mahakala Vile Sword"
+4116: 
+ TemplateId: 548
+ Grade: 7
+ DirectEffectID: 8232 # *2
+ ReverseEffectID: 8233 # *2+1
+ Name: "无上忿怒剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 85], [3, 60], [87, 450], [63, 360], [55, 180]]
+ PrepareTotalProgress: 29000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 10
+ Penetrate: 1100
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[3,4]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [30,30,1,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 140 #命中
+ PerHitDamageRateDistribution: [80, 10, 10, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkFlawEffect: 1
+ HasAtkAcupointEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ 44Desc: "(no description)"
+ 44Name: "Supreme Wrath Sword"
+4117: 
+ TemplateId: 557
+ Grade: 8
+ DirectEffectID: 8234 # *2
+ ReverseEffectID: 8235 # *2+1
+ Name: "佛王神剑"
+ Desc: "(暂无描述）"
+ UsingRequirement: [[0, 90], [3, 65], [87, 500], [63, 400], [55, 200]]
+ PrepareTotalProgress: 27500 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 20
+ Penetrate: 1000
+ DistanceAdditionWhenCast: 10
+ TrickCost: [[3,4]] # 第一个是类型：0掷1弹2御 3劈4刺5撩 6崩7点8拿 9音10缠11咒12机 19杀20无21神
+ InjuryPartAtkRateDistribution: [30,20,10,10,10,10,10] #胸 腹 头 手 手 腿 腿
+ TotalHit: 180 #命中
+ PerHitDamageRateDistribution: [40, 40, 20, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkFlawEffect: 0
+ HasAtkAcupointEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇)
+ BookId: -1
+ SectId: 11
+ FiveElements: 0 
+ CanObtainByAdventure: 0
+ Icon: "sp_icon_combatskill_5_7"
+ NeedBodyPartTypes: [4]
+ 44Desc: "(no description)"
+ 44Name: "Divine Sword of Buddha King"
+
+4118: 
+ TemplateId: 478
+ Grade: 0
+ Name: "衔尾踢"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8236 # *2
+ ReverseEffectID: 8237 # *2+1
+ SectId: 14
+ FiveElements: 5
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  60], [ 3,  40], [ 85,  100], [ 55,  80], [ 64,  80]]
+ PrepareTotalProgress: 9000 #最慢的素女天音31680 最快的是太祖长拳，寒冰刺骨，十二弦12000，身法护体则分布在3200到6400
+ BaseInnerRatio: 0 # 0 为纯外 100为纯内
+ InnerRatioChangeRange: 10
+ Penetrate: 170
+ DistanceAdditionWhenCast: 5 # 攻击范围+1
+ InjuryPartAtkRateDistribution: [1,3,0,1,1,1,1] #胸 腹 头 手 手 腿 腿
+ TotalHit: 60 #命中
+ PerHitDamageRateDistribution: [50, 30, 20, 0] #力道 精妙  迅疾 动心，一定是四个
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0] # 按照 烈郁寒赤腐幻排列，第一个为量，第二个为等级（生剧奇， 注意1为生，而不是从0开始)
+ 44Name: "Tail-Chasing Kick"
+ 
+ 44Desc: "(no description)"
+4119: 
+ TemplateId: 479
+ Grade: 1
+ Name: "赤龙翻"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8238
+ ReverseEffectID: 8239
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  50], [ 3,  30], [ 4,  35], [ 85,  150], [ 55,  120], [ 64,  120]]
+ PrepareTotalProgress: 10000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 290
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [0,0,1,10,10,10,10]
+ TotalHit: 70
+ PerHitDamageRateDistribution: [50, 30, 20, 0]
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Crimson Dragon Spin"
+
+4120: 
+ TemplateId: 480
+ Grade: 2
+ Name: "捣虚劲"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8240
+ ReverseEffectID: 8241
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  80], [ 4,  50], [ 85,  200], [ 55,  160], [ 64,  160]]
+ PrepareTotalProgress: 11000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 350
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [0,0,0,10,10,10,10]
+ TotalHit: 80
+ PerHitDamageRateDistribution: [50, 30, 20, 0]
+ HasAtkAcupointEffect: 1
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Void-Crushing Strength"
+
+4121: 
+ TemplateId: 481
+ Grade: 3
+ Name: "搜神腿"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8242
+ ReverseEffectID: 8243
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  90], [ 4,  55], [ 85,  250], [ 55,  200], [ 64,  200]]
+ PrepareTotalProgress: 15000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 500
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [100,100,50,0,0,0,0]
+ TotalHit: 120
+ PerHitDamageRateDistribution: [50, 30, 20, 0]
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "God Challenger Kick"
+
+4122: 
+ TemplateId: 482
+ Grade: 4
+ Name: "踏残甲"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8244
+ ReverseEffectID: 8245
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  110], [ 3,  50], [ 85,  300], [ 55,  240], [ 64,  240]]
+ PrepareTotalProgress: 13000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 560
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [10,10,0,10,10,10,10]
+ TotalHit: 120
+ PerHitDamageRateDistribution: [60, 20, 20, 0]
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Armor Shredding Step"
+
+4123: 
+ TemplateId: 483
+ Name: "空盏藏龙式"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8250
+ ReverseEffectID: 8251
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 4,  90], [ 5,  85], [ 85,  350], [ 55,  280], [ 64,  280]]
+ PrepareTotalProgress: 14000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 720
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [0,30,1,10,10,10,10]
+ TotalHit: 150
+ PerHitDamageRateDistribution: [60, 30, 10, 0]
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 1
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Draught of Void"
+
+4124: 
+ TemplateId: 484
+ Grade: 6
+ Name: "阴阳神龙钻"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8248
+ ReverseEffectID: 8249
+ SectId: 14
+ FiveElements: 5
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  50], [ 4,  70],[ 5,  60], [ 85,  400], [ 55,  320], [ 64,  320]]
+ PrepareTotalProgress: 15000
+ BaseInnerRatio: 50
+ InnerRatioChangeRange: 15
+ Penetrate: 880
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [0,0,10,10,10,10,10]
+ TotalHit: 270
+ PerHitDamageRateDistribution: [50, 50, 0, 0]
+ HasAtkAcupointEffect: 1
+ HasAtkFlawEffect: 1
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Yin-Yang Dragon Drill"
+
+4125: 
+ TemplateId: 485
+ Name: "潜龙出渊式"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8246
+ ReverseEffectID: 8247
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  130], [ 4,  75], [ 85,  450], [ 55,  360], [ 64,  360]]
+ PrepareTotalProgress: 16000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 800
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [0,0,0,0,0,10,10]
+ TotalHit: 180
+ PerHitDamageRateDistribution: [50, 30, 20, 0]
+ HasAtkAcupointEffect: 1
+ HasAtkFlawEffect: 0
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Unsealed Dragon from the Abyss"
+
+4126: 
+ TemplateId: 486
+ Grade: 8
+ Name: "万龙破天步"
+ Desc: "(暂无描述）"
+ DirectEffectID: 8252
+ ReverseEffectID: 8253
+ SectId: 14
+ FiveElements: 3
+ BookId: -1
+ CanObtainByAdventure: 0
+ UsingRequirement: [[ 0,  160], [ 3,  60], [ 85,  500], [ 55,  400], [ 64,  400]]
+ PrepareTotalProgress: 22000
+ BaseInnerRatio: 0
+ InnerRatioChangeRange: 10
+ Penetrate: 700
+ DistanceAdditionWhenCast: 5
+ InjuryPartAtkRateDistribution: [10,10,0,10,10,10,10]
+ TotalHit: 200
+ PerHitDamageRateDistribution: [70, 10, 20, 0]
+ HasAtkAcupointEffect: 0
+ HasAtkFlawEffect: 1
+ Poisons: [0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+ 44Desc: "(no description)"
+ 44Name: "Dragons Heaven-Breaking Step"
+

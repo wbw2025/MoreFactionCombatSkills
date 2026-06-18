@@ -63,7 +63,9 @@ namespace FeaturesBoundToFuyu
             DomainManager.Mod.GetSetting(base.ModIdStr, "Language", ref langSettings);
             bool learnAll = false;
             DomainManager.Mod.GetSetting(base.ModIdStr, "LearnAll", ref learnAll);
-            LearnAll = learnAll;
+            LearnAll = learnAll; 
+            bool dontLoadSelf = false;
+            DomainManager.Mod.GetSetting(base.ModIdStr, "DontLoadSelf", ref dontLoadSelf);
             if (langSettings == 1)
             {
                 LanguageKey = 44;
@@ -76,18 +78,37 @@ namespace FeaturesBoundToFuyu
             List<ModId> loadedModIds = ModDomain.GetLoadedModIds();
             foreach (ModId modId in loadedModIds)
             {
+                if(modId.ToString() == thisModIdStr && dontLoadSelf)
+                {
+                    AdaptableLog.Info($"Skip self");
+                    continue;
+                }
                 string directory = DomainManager.Mod.GetModDirectory(modId.ToString());
                 if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")) || File.Exists(Path.Combine(directory, "SkillBooks.yml")))
                 {
                     try
                     {
                         DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
+                    }
+                    catch (Exception ex)
+                    {
+                        AdaptableLog.Error($"功法加载失败！请检查功法mod是否冲突。目录： {directory}: {ex.Message}");
+                    }
+                    try
+                    {
                         DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
+                    }
+                    catch (Exception ex)
+                    {
+                        AdaptableLog.Error($"功法加载失败！请检查功法mod是否冲突。目录： {directory}: {ex.Message}");
+                    }
+                    try
+                    {
                         DataConfigAppender.LoadSkillBooksFromYamlFile(Path.Combine(directory, "SkillBooks.yml"));
                     }
                     catch (Exception ex)
                     {
-                        AdaptableLog.Info($"Failed to load YAML files from mod directory {directory}: {ex.Message}");
+                        AdaptableLog.Error($"功法加载失败！请检查功法mod是否冲突。目录： {directory}: {ex.Message}");
                     }
                 }
             }

@@ -1,0 +1,614 @@
+8200: 
+ TemplateId: 658 # 五行刺
+ EffectActiveType: 1
+ Name: "星罗钉"
+ 44Name: "Star-Studded Pin"
+ SkillTemplateId: 4100
+ ShortDesc: ["获得杀式"] # 注意一定是数组
+ 44ShortDesc: ["Gain Sha Trick"]
+ Desc: ["开始释放时：获得一个杀式。发挥一成威力时：若我方杀式小于三个，则获得两个杀式。"]
+ 44Desc: ["When starting to cast: Gain 1 Sha Trick. When reaching 10% Power: If you have fewer than 3 Sha Tricks, gain 2 Sha Tricks."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen9"
+8201: 
+ TemplateId: 658
+ Name: "逆·星罗钉"
+ 44Name: "Reverse Star-Studded Pin"
+ SkillTemplateId: 4100
+ ShortDesc: ["获得杀式"]
+ 44ShortDesc: ["Gain Sha Trick"]
+ Desc: ["开始释放时：敌方获得一个杀式。发挥一成威力时：若敌方杀式小于三个，则获得两个杀式。"]
+ 44Desc: ["When starting to cast: The enemy gains 1 Sha Trick. When reaching 10% Power: If enemy has fewer than 3 Sha Tricks, gain 2 Sha Tricks."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen9"
+ EffectActiveType: 1
+8202: 
+ TemplateId: 658
+ Name: "封喉索"
+ 44Name: "Cutthroat Cord"
+ SkillTemplateId: 4101
+ ShortDesc: ["杀式转为旧伤"]
+ 44ShortDesc: ["Convert Sha Trick to Old Injury"]
+ Desc: ["此功法每段命中：我方的一个杀式转化为敌人随机旧伤。若暴击则不需要消耗杀式。"]
+ 44Desc: ["Every hit of this skill: 1 of your Sha Tricks is converted into a random Old Injury on the enemy. If it is a Critical Hit, no Sha Trick is consumed."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen8"
+ EffectActiveType: 1
+8203: 
+ TemplateId: 658
+ Name: "逆·封喉索"
+ 44Name: "Reverse Cutthroat Cord"
+ SkillTemplateId: 4101
+ ShortDesc: ["杀式转为旧伤"]
+ 44ShortDesc: ["Convert Sha Trick to Old Injury"]
+ Desc: ["此功法每段命中：敌方的一个杀式转化为随机旧伤。若暴击则不需要消耗杀式。"]
+ 44Desc: ["Every hit of this skill: 1 of the enemy's Sha Tricks is converted into a random Old Injury. If it is a Critical Hit, no Sha Trick is consumed."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen8"
+ EffectActiveType: 1
+8204: 
+ TemplateId: 658
+ Name: "幽冥扇"
+ 44Name: "Netherworld Fan"
+ SkillTemplateId: 4102
+ ShortDesc: ["按赋性施加毒害"]
+ 44ShortDesc: ["Apply Poison based on Disposition"]
+ Desc: ["当运用者的冷静，勇壮，坚毅高于敌人时，本功法施加600点生毒烈毒，赤毒，腐毒。当运用者的福源高于敌人时本功法的毒性提高至剧毒。"]
+ 44Desc: ["When the user's Calm, Brave, and Resolute are higher than the enemy's, this skill applies 600 points of Hot, Red, and Rotten Poison. When the user's Fortune is higher than the enemy's, the toxicity increases to lethal levels."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen7"
+ EffectActiveType: 1
+8205: 
+ TemplateId: 658
+ Name: "逆·幽冥扇"
+ 44Name: "Reverse Netherworld Fan"
+ SkillTemplateId: 4102
+ ShortDesc: ["按赋性施加毒害"]
+ 44ShortDesc: ["Apply Poison based on Disposition"]
+ Desc: ["当运用者的冷静，勇壮，坚毅高于敌人时，本功法施加600点生毒烈毒，赤毒，腐毒。当运用者的福源高于敌人时本功法的毒性提高至剧毒。"]
+ 44Desc: ["When the user's Calm, Brave, and Resolute are higher than the enemy's, this skill applies 600 points of Hot, Red, and Rotten Poison. When the user's Fortune is higher than the enemy's, the toxicity increases to lethal levels."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen7"
+ EffectActiveType: 1
+8206: 
+ TemplateId: 658
+ Name: "七杀符"
+ 44Name: "Seven Kills Talisman"
+ SkillTemplateId: 4103
+ ShortDesc: ["累计提高伤害"]
+ 44ShortDesc: ["Accumulate Damage Increase"]
+ Desc: ["当自身获得杀或对手获得无式时每个增加+10%造成伤害，最多10层，直到下次释放。当此效果等于7层时，加成效果翻倍，还会造成1个破绽。"]
+ 44Desc: ["Whenever you gain Sha or the opponent gains Wu Trick, increase damage dealt by +10% per stack, up to 10 stacks, until the next cast. At 7 stacks, the bonus doubles and inflicts 1 Flaw."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen6"
+ EffectActiveType: 1
+8207: 
+ TemplateId: 658
+ Name: "逆·七杀符"
+ 44Name: "Reverse Seven Kills Talisman"
+ SkillTemplateId: 4103
+ ShortDesc: ["累计提高伤害"]
+ 44ShortDesc: ["Accumulate Damage Increase"]
+ Desc: ["当对手获得无或者杀式时每个增加+10%造成伤害，最多10层，直到下次释放。当此效果等于7层时，加成效果翻倍，还会造成1个破绽。"]
+ 44Desc: ["Whenever the opponent gains Wu or Sha Trick, increase damage dealt by +10% per stack, up to 10 stacks, until the next cast. At 7 stacks, the bonus doubles and inflicts 1 Flaw."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen6"
+ EffectActiveType: 1
+ MinEffectCount: 0
+8208: 
+ TemplateId: 658
+ Name: "九星落"
+ 44Name: "Nine Starburst"
+ SkillTemplateId: 4104
+ ShortDesc: ["累计提高威力"]
+ 44ShortDesc: ["Accumulate Power Increase"]
+ Desc: ["当自身获得杀/对手获得无式时增加0.1x的威力，当此效果大于9层时，如果敌人在攻击范围且可以释放该功法并命中敌人，则自动释放该功法并将层数减少到0层，否则减少到8层。"]
+ 44Desc: ["Whenever you gain Sha or the opponent gains Wu Trick, increase Power by 0.1x. When stacks exceed 9, if the enemy is in range and the skill can hit, automatically cast it and reset stacks to 0; otherwise, reduce stacks to 8."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen5"
+ EffectActiveType: 1
+ MinEffectCount: 0
+8209: 
+ TemplateId: 658
+ Name: "逆·九星落"
+ 44Name: "Reverse Nine Starburst"
+ SkillTemplateId: 4104
+ ShortDesc: ["累计提高威力"]
+ 44ShortDesc: ["Accumulate Power Increase"]
+ Desc: ["当对手获得无或杀式时增加0.1x的威力，当此效果大于9层时，如果敌人在攻击范围且可以释放该功法并命中敌人，则自动释放该功法并将层数减少到0层。否则减少到8层。"]
+ 44Desc: ["Whenever the opponent  gains a Sha or Wu Trick, increase Power by 0.1x. When stacks exceed 9, if the enemy is in range and the skill can hit, automatically cast it and reset stacks to 0; otherwise, reduce stacks to 8."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen5"
+ EffectActiveType: 1
+8210: 
+ TemplateId: 658
+ Name: "影里花"
+ 44Name: "Flower in the Shadow"
+ SkillTemplateId: 4105
+ ShortDesc: ["伤势转化为旧伤"]
+ 44ShortDesc: ["Convert Injury to Old Injury"]
+ Desc: ["当击中敌人的部位有破绽时：将这个部位上的所有伤口转为旧伤，每转化一个伤口，施加160*威力赤毒。之后，若发挥了十成威力，使敌人产生一个破绽。"]
+ 44Desc: ["If the hit body part has a Flaw: Convert all injuries on that part to Old Injuries. For each injury converted, apply 160 * Power Red Poison. Then, if reaching 100% Power, inflict 1 Flaw on the enemy."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen4"
+ EffectActiveType: 1
+8211: 
+ TemplateId: 658
+ Name: "逆·影里花"
+ 44Name: "Reverse Flower in the Shadow"
+ SkillTemplateId: 4105
+ ShortDesc: ["伤势转化为旧伤"]
+ 44ShortDesc: ["Convert Injury to Old Injury"]
+ Desc: ["当击中敌人的部位有点穴时：将这个部位上的所有伤口转为旧伤，每转化一个伤口，施加160*威力寒毒。之后，若发挥了十成威力，使敌人产生一个点穴。"]
+ 44Desc: ["If the hit body part has a Blocked Acupoint: Convert all injuries on that part to Old Injuries. For each injury converted, apply 160 * Power Cold Poison. Then, if reaching 100% Power, inflict 1 Blocked Acupoint on the enemy."]
+ RequireAttackPower: 10 # 1成
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen4"
+ EffectActiveType: 1
+8212: 
+ TemplateId: 658
+ Name: "索血诏"
+ 44Name: "Blood-Seeking Decree"
+ SkillTemplateId: 4106
+ ShortDesc: ["吸取架势提气"]
+ 44ShortDesc: ["Absorb Stance and Breath"]
+ Desc: ["每有一个杀式，消耗4+1%健康，吸取敌人提气和架势，等同于25%释放该功法时的消耗的提气和架势。"]
+ 44Desc: ["For each Sha Trick you have, consume 4+1% Health to absorb enemy Breath and Stance equal to 25% of the Breath and Stance consumed to cast this skill."]
+ RequireAttackPower: 100
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen3"
+ EffectActiveType: 1
+8213: 
+ TemplateId: 658
+ Name: "逆·索血诏"
+ 44Name: "Reverse Blood-Seeking Decree"
+ SkillTemplateId: 4106
+ ShortDesc: ["吸取架势提气"]
+ 44ShortDesc: ["Absorb Stance and Breath"]
+ Desc: ["敌人每有一个杀式，消耗4+1%健康，吸取敌人提气和架势，等同于20%释放该功法时的消耗的提气和架势。"]
+ 44Desc: ["For each Sha Trick the enemy has, consume 4+1% Health to absorb enemy Breath and Stance equal to 20% of the Breath and Stance consumed to cast this skill."]
+ RequireAttackPower: 100
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen3"
+ EffectActiveType: 1
+8214: 
+ TemplateId: 658
+ Name: "千踪百解"
+ 44Name: "End of Thousand Trails"
+ SkillTemplateId: 4107
+ ShortDesc: ["杀式无式互换"]
+ 44ShortDesc: ["Swap Sha and Wu Tricks"]
+ Desc: ["敌人每有一个无，我方每有一个杀式，伤害+10%，发挥十成威力时，我方杀式和敌人无式互换。当我方获得杀式时，若敌方的无和我方杀式之和大于等于8个，且此功法可以命中敌方，失去一个杀式，立即无消耗地从50%释放该功法并封禁该功法3秒。"]
+ 44Desc: ["For each enemy Wu Trick and each of your Sha Tricks, damage +10%. At 100% Power, swap your Sha Tricks with the enemy's Wu Tricks. When you gain a Sha Trick, if the sum of enemy's Wu and your Sha is >= 8, and this skill can hit, lose 1 Sha Trick to instantly cast this skill from 50% progress without cost and silence it for 3s."]
+ RequireAttackPower: 100
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen2"
+ EffectActiveType: 1
+8215: 
+ TemplateId: 658
+ Name: "逆·千踪百解"
+ 44Name: "Reverse End of Thousand Trails"
+ SkillTemplateId: 4107
+ ShortDesc: ["杀式无式互换"]
+ 44ShortDesc: ["Swap Sha and Wu Tricks"]
+ Desc: ["敌人每有一个无/杀式，伤害+10%，发挥十成威力时，敌人杀式和无式互换。当敌方获得杀式时，若敌方的无和杀式大于等于8个，且此功法可以命中敌方，敌人失去两个杀式，立即无消耗地从50%释放该功法并封禁该功法3秒。"]
+ 44Desc: ["For each enemy Wu or Sha Trick, damage +10%. At 100% Power, swap the enemy's Sha Tricks and Wu Tricks. When enemy gains Sha, if their Wu and Sha total >= 8 and this skill can hit, enemy loses 2 Sha Tricks; instantly cast this skill from 50% without cost and silence it for 3s."]
+ RequireAttackPower: 100
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen2"
+ EffectActiveType: 1
+8216: 
+ TemplateId: 658
+ Name: "万象俱寂"
+ 44Name: "The Universe Silent"
+ SkillTemplateId: 4108
+ ShortDesc: ["杀式转为必死标记"]
+ 44ShortDesc: ["Convert Sha Trick to Death Mark"]
+ Desc: ["以此功法开始攻击敌人时，若我方拥有的杀式大于等于三个，尝试打断敌人正在施展的功法，否则获得一个。发挥十成威力且敌方战败标记超过一半时，将我方的杀式转化为敌人的必死标记。"]
+ 44Desc: ["When starting to attack with this skill, if you have >= 3 Sha Tricks, attempt to interrupt the enemy's current skill; otherwise gain 1 Sha Trick. At 100% Power and if enemy's defeat marks > 50%, convert your Sha Tricks into enemy's Death Marks."]
+ RequireAttackPower: 100
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen1"
+ EffectActiveType: 1
+8217: 
+ TemplateId: 658
+ Name: "逆·万象俱寂"
+ 44Name: "The Reverse Universe Silent"
+ SkillTemplateId: 4108
+ ShortDesc: ["杀式转为必死标记"]
+ 44ShortDesc: ["Convert Sha Trick to Death Mark"]
+ Desc: ["以此功法开始攻击敌人时，若敌方拥有的杀式大于等于三个，尝试打断敌人正在施展的功法；否则获得一个。发挥十成威力且敌方战败标记超过一半时，将敌方的杀式转化为敌人的必死标记。"]
+ 44Desc: ["When starting to attack with this skill, if the enemy has >= 3 Sha Tricks, attempt to interrupt their current skill; otherwise gain 1 Sha Trick. At 100% Power and if enemy's defeat marks > 50%, convert enemy's Sha Tricks into their Death Marks."]
+ RequireAttackPower: 100
+ ClassName: "MoreFactionCombatSkills.JieQingMen.Qimen1"
+ EffectActiveType: 1
+8218: 
+ TemplateId: 658
+ Name: "佛王之剑"
+ 44Name: "Sword of the Buddha King"
+ SkillTemplateId: 4109
+ ShortDesc: [""]
+ 44ShortDesc: [""]
+ Desc: ["该功法无论正逆均无特效，但是你可以通过其他金刚剑法来强化它！"]
+ 44Desc: ["This skill has no effect by itself, but it can be enhanced by other Jingangzong Sword skills!"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa9"
+ EffectActiveType: 1
+8219: 
+ TemplateId: 658
+ Name: "逆·佛王之剑"
+ 44Name: "Reverse Sword of the Buddha King"
+ SkillTemplateId: 4109
+ ShortDesc: [""]
+ 44ShortDesc: [""]
+ Desc: ["该功法无论正逆均无特效，但是你可以通过其他金刚剑法来强化它！"]
+ 44Desc: ["This skill has no effect by itself, but it can be enhanced by other Jingangzong Sword skills!"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa9"
+ EffectActiveType: 1
+8220: 
+ TemplateId: 658
+ Name: "降魔剑"
+ 44Name: "Demon-Subduing Sword"
+ SkillTemplateId: 4110
+ ShortDesc: ["佛王剑增威"]
+ 44ShortDesc: ["Enhance Buddha King Sword Power"]
+ Desc: ["发挥最少五成威力时，增加【佛王剑】+35%的威力。"]
+ 44Desc: ["At >= 50% Hit. increase [Buddha King Sword] Power by +35%."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa8"
+ EffectActiveType: 1
+8221: 
+ TemplateId: 658
+ Name: "逆·降魔剑"
+ 44Name: "Reverse Demon-Subduing Sword"
+ SkillTemplateId: 4110
+ ShortDesc: ["佛王剑增威"]
+ 44ShortDesc: ["Enhance Buddha King Sword Power"]
+ Desc: ["发挥最少五成威力时，增加下一个【佛王剑】+75%的威力（不可叠加）。"]
+ 44Desc: ["At >= 50% Hit. increase the next [Buddha King Sword] Power by +75% (non-stackable)."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa8"
+ EffectActiveType: 1
+8222: 
+ SkillTemplateId: 4111
+ Name: "断罪剑"
+ 44Name: "Judgment Sword"
+ ShortDesc: ["额外增加命中"]
+ 44ShortDesc: ["Additional Hit Chance"]
+ Desc: ["发挥最少五成威力时，【佛王剑】在发挥五成威力后有+20%的概率在施展后再次从50%无消耗施展。自动施展的【佛王剑】每释放一次，其收到该特效加成效果x0.6。"]
+ 44Desc: ["At >= 50% Hit: [Buddha King Sword] has a +20% chance to trigger an additional 50% cast without cost after reaching 50% Power. Each subsequent auto-cast reduces this bonus by x0.6."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa7"
+ EffectActiveType: 1
+ TemplateId: 658
+8223: 
+ SkillTemplateId: 4111
+ Name: "逆·断罪剑"
+ 44Name: "Reverse Judgment Sword"
+ Desc: ["发挥最少五成威力时，你的下一个【佛王剑】在发挥五成威力后有75%的概率额外从50%施展一次（不叠加）。"]
+ 44Desc: ["At >= 50% Hit: Your next [Buddha King Sword] has a 75% chance to trigger an additional 50% cast after reaching 50% Power (non-stackable)."]
+ ShortDesc: ["造成额外伤害"]
+ 44ShortDesc: ["Additional Damage"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa7"
+ EffectActiveType: 1
+ TemplateId: 658
+8224: 
+ SkillTemplateId: 4112
+ Name: "五智剑"
+ 44Name: "Five Wisdoms Sword"
+ Desc: ["发挥最少五成威力时，你的【佛王剑】在发挥五成威力后会吸取每种真气。数量为精纯/2+2。"]
+ 44Desc: ["At >= 50% Hit: Your [Buddha King Sword] will absorb all types of Qi after reaching 50% Power. Amount = Consummate Level / 2 + 2."]
+ ShortDesc: ["吸取真气"]
+ 44ShortDesc: ["Absorb Qi"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa6"
+ EffectActiveType: 1
+ TemplateId: 658
+8225: 
+ SkillTemplateId: 4112
+ Name: "逆·五智剑"
+ 44Name: "Reverse Five Wisdoms Sword"
+ Desc: ["发挥最少五成威力时，你的下一个【佛王剑】在发挥五成威力后会吸取每种真气，数量为精纯+10。（不可叠加）"]
+ 44Desc: ["At >= 50% Hit: Your next [Buddha King Sword] will absorb all types of Qi after reaching 50% Power. Amount = Consummate Level + 10 (non-stackable)."]
+ ShortDesc: ["吸取真气"]
+ 44ShortDesc: ["Absorb Qi"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa6"
+ EffectActiveType: 1
+ TemplateId: 658
+8226: 
+ SkillTemplateId: 4113
+ Name: "圆觉剑"
+ 44Name: "Sword of full Enlightenment"
+ ShortDesc: ["造成心神伤害"]
+ 44ShortDesc: ["Inflict Mind Damage"]
+ Desc: ["发挥最少五成威力时，你的【佛王剑】额外造成心神伤害，相当于造成伤害的33%。"]
+ 44Desc: ["At >= 50% Hit: Your [Buddha King Sword] inflicts extra Mind Damage equal to 33% of damage dealt."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa5"
+ EffectActiveType: 1
+ TemplateId: 658
+8227: 
+ SkillTemplateId: 4113
+ Name: "逆·圆觉剑"
+ 44Name: "Reverse Sword of full Enlightenment"
+ ShortDesc: ["造成心神伤害"]
+ 44ShortDesc: ["Inflict Mind Damage"]
+ Desc: ["发挥最少五成威力时，你的下一个【佛王剑】额外造成心神伤害，相当于造成伤害的75%（不可叠加）。"]
+ 44Desc: ["At >= 50% Hit: Your next [Buddha King Sword] inflicts extra Mind Damage equal to 75% of damage dealt (non-stackable)."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa5"
+ EffectActiveType: 1
+ TemplateId: 658
+8228: 
+ SkillTemplateId: 4114
+ Name: "波罗蜜多剑"
+ 44Name: "Paramita Sword"
+ ShortDesc: ["减少入魔值"]
+ 44ShortDesc: ["Reduce Corruption"]
+ Desc: ["发挥最少五成威力时，【佛王剑】会减少你的15点入魔值，但是不会低于战斗开始前。"]
+ 44Desc: ["At >= 50% Hit: [Buddha King Sword] reduces your Xiang-shu Corruption by 15, but not below the value at the start of battle."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa4"
+ EffectActiveType: 1
+ TemplateId: 658
+8229: 
+ SkillTemplateId: 4114
+ Name: "逆·波罗蜜多剑"
+ 44Name: "Reverse Paramita Sword"
+ ShortDesc: ["减少入魔值"]
+ 44ShortDesc: ["Reduce Corruption"]
+ Desc: ["发挥最少五成威力时，你的下一个【佛王剑】会减少你的70点入魔值，但是不会低于战斗开始前。（不可叠加）"]
+ 44Desc: ["At >= 50% Hit: Your next [Buddha King Sword] reduces your Xiang-shu Corruption by 70, but not below the value at the start of battle. (non-stackable)"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa4"
+ EffectActiveType: 1
+ TemplateId: 658
+8230: 
+ SkillTemplateId: 4115
+ Name: "大黑天凶剑"
+ 44Name: "Mahakala Vile Sword"
+ ShortDesc: ["施加毒素"]
+ 44ShortDesc: ["Apply Poison"]
+ Desc: ["该功法会施加600点随机奇毒。发挥最少五成威力时，【佛王剑】也会获得400点奇毒。"]
+ 44Desc: ["This skill applies 600 points of random Poison. At >= 50% Hit, [Buddha King Sword] also gains 400 points of Poison."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa3"
+ EffectActiveType: 1
+ TemplateId: 658
+8231: 
+ SkillTemplateId: 4115
+ Name: "逆·大黑天凶剑"
+ 44Name: "Reverse Mahakala Vile Sword"
+ ShortDesc: ["施加毒素"]
+ 44ShortDesc: ["Apply Poison"]
+ Desc: ["该功法会施加600点随机奇毒。发挥最少五成威力时，你的下一个【佛王剑】也会获得1000点奇毒。（不叠加）"]
+ 44Desc: ["This skill applies 600 points of random Poison. At >= 50% Hit, your next [Buddha King Sword] also gains 1000 points of Poison (non-stackable)."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa3"
+ EffectActiveType: 1
+ TemplateId: 658
+8232: 
+ SkillTemplateId: 4116
+ Name: "无上忿怒剑"
+ 44Name: "Supreme Wrath Sword"
+ ShortDesc: ["佛王剑额外命中"]
+ 44ShortDesc: ["Buddha King Sword Extra Hit"]
+ Desc: ["发挥最少五成威力时，【佛王剑】最后一击额外命中一个部位（不会重复）。"]
+ 44Desc: ["At >= 50% Hit: The final hit of [Buddha King Sword] hits an additional body part (no duplicates)."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa2"
+ EffectActiveType: 1
+ TemplateId: 658
+8233: 
+ SkillTemplateId: 4116
+ Name: "逆·无上忿怒剑"
+ 44Name: "Reverse Supreme Wrath Sword"
+ ShortDesc: ["佛王剑额外命中"]
+ 44ShortDesc: ["Buddha King Sword Extra Hit"]
+ Desc: ["发挥最少五成威力时，你的下一个【佛王剑】最后一击额外命中两个部位（不叠加）。"]
+ 44Desc: ["At >= 50% Hit: The final hit of your next [Buddha King Sword] hits two additional body parts (non-stackable)."]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa2"
+ EffectActiveType: 1
+ TemplateId: 658
+8234: 
+ TemplateId: 658
+ Name: "佛王神剑"
+ 44Name: "Divine Sword of Buddha King"
+ SkillTemplateId: 4117
+ ShortDesc: [""]
+ 44ShortDesc: [""]
+ Desc: ["该功法无论正逆，均无特效，但是你可以通过其他金刚剑法来强化它！"]
+ 44Desc: ["This skill has no effect by itself, but it can be enhanced by other Jingangzong Sword skills!"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa1"
+ EffectActiveType: 1
+8235: 
+ TemplateId: 658
+ Name: "逆·佛王神剑"
+ 44Name: "Reverse Divine Sword of Buddha King"
+ SkillTemplateId: 4117
+ ShortDesc: [""]
+ 44ShortDesc: [""]
+ Desc: ["该功法无论正逆，均无特效，但是你可以通过其他金刚剑法来强化它！"]
+ 44Desc: ["This skill has no effect by itself, but it can be enhanced by other Jingangzong Sword skills!"]
+ ClassName: "MoreFactionCombatSkills.JinGangZong.Jianfa1"
+ EffectActiveType: 1
+8236:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "衔尾踢"
+ 44Name: "Tail-Chasing Kick"
+ SkillTemplateId: 4118
+ ShortDesc: ["自动释放时释放", "添加随机破绽"]
+ 44ShortDesc: ["Cast on Auto-Cast", "Add Random Flaw"]
+ Desc: ["该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则向敌人添加一个随机破绽。","该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则向敌人添加一个随机破绽。"]
+ 44Desc: ["Automatically cast after another Leg Skill is auto-cast. At 10% Power, if the user is drunk, add a random Flaw to the enemy."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa9"
+8237:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·衔尾踢"
+ 44Name: "Reverse Tail-Chasing Kick"
+ SkillTemplateId: 4118
+ ShortDesc: ["自动释放时释放", "持续提高威力"]
+ 44ShortDesc: ["Cast on Auto-Cast", "Continuously Increase Power"]
+ Desc: ["该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则为自己添加一个随机破绽并使得该功法威力+10%，直到战斗结束。","该功法在其他腿法自动释放后自动释放。发挥一成威力后，若运用者醉酒，则为自己添加一个随机破绽并使得该功法威力+10%，直到战斗结束。"]
+ 44Desc: ["Automatically cast after another Leg Skill is auto-cast. At 10% Power, if user is drunk, add a random Flaw to self and increase this skill's Power by +10% until end of battle."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa9"
+8238:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "赤龙翻"
+ 44Name: "Crimson Dragon Spin"
+ SkillTemplateId: 4119
+ ShortDesc: ["伤势触发自动释放"]
+ 44ShortDesc: ["Injury Trigger Auto-Cast"]
+ Desc: ["该功法在敌人胸背或腰腹上被添加伤势标记时自动释放。若自动释放，释放结束之后会封禁该功法4秒。"]
+ 44Desc: ["Automatically cast when an injury mark is added to the enemy's chest, or abdomen. If auto-cast, it will be silenced for 4s after finishing."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa8"
+8239:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·赤龙翻"
+ 44Name: "Reverse Crimson Dragon Spin"
+ SkillTemplateId: 4119
+ ShortDesc: ["伤势触发自动释放"]
+ 44ShortDesc: ["Injury Trigger Auto-Cast"]
+ Desc: ["该功法在自己胸背或腰腹上被添加伤势标记时自动释放。若自动释放，释放结束之后会封禁该功法2秒。"]
+ 44Desc: ["Automatically cast when an injury mark is added to your own chest, or abdomen. If auto-cast, it will be silenced for 2s after finishing."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa8"
+8240:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "捣虚劲"
+ 44Name: "Void-Crushing Strength"
+ SkillTemplateId: 4120
+ ShortDesc: ["未满威力释放"]
+ 44ShortDesc: ["Cast on Incomplete Power"]
+ Desc: ["该功法在敌人一个功法未造成十成威力时自动释放。若自动释放，释放结束之后会封禁该功法2秒。"]
+ 44Desc: ["Automatically cast when an enemy's skill fails to reach 100% Power. If auto-cast, it will be silenced for 2s after finishing."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa7"
+8241:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·捣虚劲"
+ 44Name: "Reverse Void-Crushing Strength"
+ SkillTemplateId: 4120
+ ShortDesc: ["未满威力释放"]
+ 44ShortDesc: ["Cast on Incomplete Power"]
+ Desc: ["该功法在我方一个功法未造成十成威力时自动释放。若自动释放，释放结束之后会封禁该功法4秒。"]
+ 44Desc: ["Automatically cast when your own skill fails to reach 100% Power. If auto-cast, it will be silenced for 4s after finishing."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa7"
+8242:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "搜神腿"
+ 44Name: "God Challenger Kick"
+ SkillTemplateId: 4121
+ ShortDesc: ["十成获真气"]
+ 44ShortDesc: ["Gain Qi at 100% Power"]
+ Desc: ["发挥十成威力时，获得(10+精纯)总真气，并打乱自身的真气分布。每一项失去的真气和获得的真气均会触发对应效果。"]
+ 44Desc: ["At 100% Power: Gain (10 + Consummate Level) total Qi and scramble your own Qi distribution. Effects trigger for every point of Qi lost or gained."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa6"
+8243:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·搜神腿"
+ 44Name: "Reverse God Challenger Kick"
+ SkillTemplateId: 4121
+ ShortDesc: ["十成获真气"]
+ 44ShortDesc: ["Gain Qi at 100% Power"]
+ Desc: ["发挥十成威力时，敌人失去(10+敌人精纯)总真气，并打乱敌人的真气分布。每一项失去的真气和获得的真气均会触发对应效果。"]
+ 44Desc: ["At 100% Power: Enemy loses (10 + enemy Consummate Level) total Qi and their Qi distribution is scrambled. Effects trigger for every point of Qi lost or gained."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa6"
+8244:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "踏残甲"
+ 44Name: "Armor Shredding Step"
+ SkillTemplateId: 4122
+ ShortDesc: ["护甲触发释放", "破坏敌人护甲"]
+ 44ShortDesc: ["Armor Trigger Cast", "Destroy Enemy Armor"]
+ Desc: ["该功法在敌人护甲失去共计3次耐久度时自动释放。若为自动释放，之后封禁自身2秒。发挥一成威力时，若运用者醉酒，敌人的一件随机护甲失去2耐久度。","该功法在敌人护甲失去共计3次耐久度时自动释放。若为自动释放，之后封禁自身2秒。发挥一成威力时，若运用者醉酒，敌人的一件随机护甲失去2耐久度。"]
+ 44Desc: ["Automatically cast when enemy armor loses a total of 3 Durability. If auto-cast, silence self for 2s. At 10% Power, if user is drunk, a random enemy armor loses 2 Durability."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa5"
+8245:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·踏残甲"
+ 44Name: "Reverse Armor Shredding Step"
+ SkillTemplateId: 4122
+ ShortDesc: ["护甲触发释放", "破坏敌人护甲"]
+ 44ShortDesc: ["Armor Trigger Cast", "Destroy Enemy Armor"]
+ Desc: ["该功法在自身护甲失去共计3次耐久度时自动释放。若为自动释放，之后封禁自身2秒。发挥一成威力时，若运用者醉酒，敌人的一件随机护甲失去2耐久度。","该功法在自身护甲失去共计3次耐久度时自动释放。若为自动释放，之后封禁自身2秒。发挥一成威力时，若运用者醉酒，敌人的一件随机护甲失去2耐久度。"]
+ 44Desc: ["Automatically cast when your armor loses a total of 3 Durability. If auto-cast, silence self for 2s. At 10% Power, if user is drunk, a random enemy armor loses 2 Durability."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa5"
+8246:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "潜龙出渊式"
+ 44Name: "Unsealed Dragon from the Abyss"
+ SkillTemplateId: 4125
+ ShortDesc: ["解除封禁释放", "添加破绽标记"]
+ 44ShortDesc: ["Cast on Unsilence", "Add Flaw Mark"]
+ Desc: ["该功法在自身解除封禁时自动释放。发挥十成威力时，若运用者醉酒，自身每有一个仍在封禁中的功法，向敌人添加一个破绽标记。"]
+ 44Desc: ["Automatically cast when you are unsilenced. At 100% Power, if user is drunk, for each skill of yours still silenced, add 1 Flaw mark to the enemy."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa4"
+8247:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·潜龙出渊式"
+ 44Name: "Reverse Unsealed Dragon from the Abyss"
+ SkillTemplateId: 4125
+ ShortDesc: ["解除封禁释放", "添加破绽标记"]
+ 44ShortDesc: ["Cast on Unsilence", "Add Flaw Mark"]
+ Desc: ["该功法在敌人的功法在解除封禁时自动释放。发挥十成威力时，若运用者醉酒，敌人每有一个仍在封禁中的功法，向敌人添加一个破绽标记。"]
+ 44Desc: ["Automatically cast when the enemy is unsilenced. At 100% Power, if user is drunk, for each skill of the enemy still silenced, add 1 Flaw mark to the enemy."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa4"
+8248:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "阴阳神龙钻"
+ 44Name: "Yin-Yang Dragon Drill"
+ SkillTemplateId: 4124
+ ShortDesc: ["内外伤配对释放"]
+ 44ShortDesc: ["Cast on Inner&Outer Injuries"]
+ Desc: ["敌人同一时刻同时获得内伤和外伤时自动释放，自动释放后封禁4秒。若运用者醉酒且该功法为自动释放，该功法从90%施展。"]
+ 44Desc: ["Automatically cast when the enemy receives both Inner and Outer injuries simultaneously; silenced for 4s after. If user is drunk and auto-casting, starts from 90% progress."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa3"
+8249:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·阴阳神龙钻"
+ 44Name: "Reverse Yin-Yang Dragon Drill"
+ SkillTemplateId: 4124
+ ShortDesc: ["内外伤配对释放"]
+ 44ShortDesc: ["Cast on Inner&Outer Injuries"]
+ Desc: ["自身同一时刻同时获得内伤和外伤时自动释放，自动释放后封禁2秒。若运用者醉酒且该功法为自动释放，该功法从90%施展。"]
+ 44Desc: ["Automatically cast when you receive both Inner and Outer injuries simultaneously; silenced for 2s after. If user is drunk and auto-casting, starts from 90% progress."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa3"
+8250:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "空盏藏龙式"
+ 44Name: "Draught of Void"
+ SkillTemplateId: 4123
+ ShortDesc: ["饮酒自动释放", "增敌内息紊乱"]
+ 44ShortDesc: ["Cast on Drinking", "Increase Enemy Qi Disorder"]
+ Desc: ["该功法在自身饮酒时自动释放。发挥至少一成威力时，若运用者醉酒，提高敌人的内息紊乱，相当于自身内息紊乱的七分之一。"]
+ 44Desc: ["Automatically cast when you drink wine. At >= 10% Power, if user is drunk, increase enemy's Qi Disorder by 1/7 of your own."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa2"
+8251:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·空盏藏龙式"
+ 44Name: "Reverse Empty Cup Hidden Dragon"
+ SkillTemplateId: 4123
+ ShortDesc: ["物品自动释放", "降自内息紊乱"]
+ 44ShortDesc: ["Cast on Item Use", "Decrease Own Qi Disorder"]
+ Desc: ["该功法在敌人使用任何物品时自动释放。发挥至少一成威力时，若运用者醉酒，降低自身的10%的新增内息紊乱。"]
+ 44Desc: ["Automatically cast when the enemy uses any item. At >= 10% Power, if user is drunk, reduce your own newly gained Qi Disorder by 10%."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa2"
+8252:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "万龙破天步"
+ 44Name: "Dragons Heaven-Breaking Step"
+ SkillTemplateId: 4126
+ ShortDesc: ["触发其他自动腿法"]
+ 44ShortDesc: ["Trigger Other Auto Leg Skills"]
+ Desc: ["发挥十成威力时，若已装备的其他腿法可以自动释放，则其自动释放。"]
+ 44Desc: ["At 100% Power, if other equipped Leg Skills can be auto-cast, they trigger immediately."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa1"
+8253:
+ TemplateId: 658
+ EffectActiveType: 1
+ Name: "逆·万龙破天步"
+ 44Name: "Reverse Dragons Heaven-Breaking Step"
+ SkillTemplateId: 4126
+ ShortDesc: ["强化自身"]
+ 44ShortDesc: ["Strengthen Self"]
+ Desc: ["开始施展此功法时，封禁所有其他已装备的且未封禁的腿法10秒。在此次释放时获得人物穿透和命中，数值等于各个以此方法封禁的腿法的面板穿透和命中之和。"]
+ 44Desc: ["Upon starting cast, silence all other un-silenced equipped Leg Skills for 10s. Gain Penetration and Hit values equal to the sum of the base values of all Leg Skills silenced this way."]
+ ClassName: "MoreFactionCombatSkills.FuLongTan.Tuifa1"

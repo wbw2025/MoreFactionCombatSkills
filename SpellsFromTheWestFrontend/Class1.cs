@@ -63,6 +63,7 @@ namespace FeaturesBoundToFuyu
             {
                 if(mod.DirectoryName == myModInfo.DirectoryName && dontLoadSelf)
                 {
+                        AdaptableLog.Info($"Skip self");
                     continue;
                 }
 
@@ -72,20 +73,39 @@ namespace FeaturesBoundToFuyu
                     try
                     {
                         DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
+                    }
+                    catch (Exception ex)
+                    {
+                        AdaptableLog.Error($"功法加载失败！请检查功法mod是否冲突。目录： {directory}: {ex.Message}");
+                    }
+                    try
+                    {
                         DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
+                    }
+                    catch (Exception ex)
+                    {
+                        AdaptableLog.Error($"功法加载失败！请检查功法mod是否冲突。目录： {directory}: {ex.Message}");
+                    }
+                    try
+                    {
                         DataConfigAppender.LoadSkillBooksFromYamlFile(Path.Combine(directory, "SkillBooks.yml"));
                     }
                     catch (Exception ex)
                     {
-                        AdaptableLog.Info($"Failed to load YAML files from mod directory {directory}: {ex.Message}");
+                        AdaptableLog.Error($"功法加载失败！请检查功法mod是否冲突。目录： {directory}: {ex.Message}");
                     }
                 }
             }
 
-            DumpConfigToCsv(CombatSkill.Instance, @".\CombatSkills.csv");
-            DumpConfigToCsv(SpecialEffect.Instance, @".\SpecialEffects.csv");
-            DumpConfigToCsv(SkillBook.Instance, @".\SkillBooks.csv");
-            AdaptableLog.Info($"Dumping game data. Dump Directory {Directory.GetCurrentDirectory()}");
+            bool doDump = false;
+            ModManager.GetSetting(base.ModIdStr, "DoDump", ref doDump);
+            if (doDump)
+            {
+                DumpConfigToCsv(CombatSkill.Instance, @".\CombatSkills.csv");
+                DumpConfigToCsv(SpecialEffect.Instance, @".\SpecialEffects.csv");
+                DumpConfigToCsv(SkillBook.Instance, @".\SkillBooks.csv");
+                AdaptableLog.Info($"Dumping game data. Dump Directory {Directory.GetCurrentDirectory()}");
+            }
 
             AdaptableLog.Info($"SpellsFromTheWest Frontend initialized. LanguageKey: {LanguageKey}.");
 
@@ -124,7 +144,7 @@ namespace FeaturesBoundToFuyu
             }
             catch (Exception ex)
             {
-                AdaptableLog.Error($"Failed to write to {filePath}: {ex.Message}");
+                AdaptableLog.Error($"解包失败： {filePath}: {ex.Message}");
             }
         }
 

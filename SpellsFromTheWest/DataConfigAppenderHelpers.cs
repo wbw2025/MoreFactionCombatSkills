@@ -43,20 +43,57 @@ namespace FeaturesBoundToFuyu
             SkillBreakGridList.Instance.AddExtraItem((Item.TemplateId).ToString(), Item.Name, CopiedGradeList);
 
         }
+        private static void OverwriteInDataArray(System.Type configType, object configInstance, short templateId, object newItem)
+        {
+            var fieldInfo = configType.GetField("_dataArray", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (fieldInfo == null)
+                return;
+
+            var list = fieldInfo.GetValue(configInstance) as System.Collections.IList;
+            if (list == null || templateId >= list.Count)
+                return;
+
+            list[templateId] = newItem;
+        }
+
         public static void AddSpecialEffectItemToConfig(string TemplateId, string Name, object Item)
         {
-            SpecialEffect.Instance.AddExtraItem(TemplateId, Name, Item);
+            short tid = short.Parse(TemplateId);
+            if (tid < SpecialEffect.Instance.Count)
+            {
+                OverwriteInDataArray(typeof(Config.SpecialEffect), SpecialEffect.Instance, tid, Item);
+            }
+            else
+            {
+                SpecialEffect.Instance.AddExtraItem(TemplateId, Name, Item);
+            }
             _specialEffectItems.Add((SpecialEffectItem)Item);
         }
         public static void AddCombatSkillItemToConfig(string TemplateId, string Name, object Item)
         {
-            CombatSkill.Instance.AddExtraItem(TemplateId, Name, Item);
-            AddSkillBreakGridList((CombatSkillItem)Item);
+            short tid = short.Parse(TemplateId);
+            if (tid < CombatSkill.Instance.Count)
+            {
+                OverwriteInDataArray(typeof(Config.CombatSkill), CombatSkill.Instance, tid, Item);
+            }
+            else
+            {
+                CombatSkill.Instance.AddExtraItem(TemplateId, Name, Item);
+                AddSkillBreakGridList((CombatSkillItem)Item);
+            }
             _combatSkillItems.Add((CombatSkillItem)Item);
         }
         public static void AddSkillBookToConfig(string TemplateId, string Name, object Item)
         {
-            Config.SkillBook.Instance.AddExtraItem(TemplateId, Name, Item);
+            short tid = short.Parse(TemplateId);
+            if (tid < Config.SkillBook.Instance.Count)
+            {
+                OverwriteInDataArray(typeof(Config.SkillBook), Config.SkillBook.Instance, tid, Item);
+            }
+            else
+            {
+                Config.SkillBook.Instance.AddExtraItem(TemplateId, Name, Item);
+            }
             _skillBookItems.Add((SkillBookItem)Item);
         }
     }
