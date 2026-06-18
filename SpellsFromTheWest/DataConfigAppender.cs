@@ -57,7 +57,7 @@ namespace FeaturesBoundToFuyu
                     if (string.Equals(field.Key, "TemplateId", StringComparison.OrdinalIgnoreCase))
                         continue;
 
-                    changes[field.Key] = field.Value;
+                    changes[field.Key] = ResolveBangReference(field.Key, field.Value, SpecialEffect.Instance);
                 }
 
                 changes["NewTemplateId"] = newTemplateId;
@@ -97,7 +97,7 @@ namespace FeaturesBoundToFuyu
                     if (string.Equals(field.Key, "TemplateId", StringComparison.OrdinalIgnoreCase))
                         continue;
 
-                    changes[field.Key] = field.Value;
+                    changes[field.Key] = ResolveBangReference(field.Key, field.Value, CombatSkill.Instance);
                 }
 
                 changes["NewTemplateId"] = newTemplateId;
@@ -138,7 +138,7 @@ namespace FeaturesBoundToFuyu
                     if (string.Equals(field.Key, "TemplateId", StringComparison.OrdinalIgnoreCase))
                         continue;
 
-                    changes[field.Key] = field.Value;
+                    changes[field.Key] = ResolveBangReference(field.Key, field.Value, Config.SkillBook.Instance);
                 }
 
                 changes["NewTemplateId"] = newTemplateId;
@@ -191,11 +191,11 @@ namespace FeaturesBoundToFuyu
 
             int targetTemplateId = GetRequiredNewTemplateId(changes);
 
-            SkillBookItem sourceItem = SkillBook.Instance[(short)templateID];
+            SkillBookItem sourceItem = Config.SkillBook.Instance[(short)templateID];
             if (sourceItem == null)
                 throw new InvalidOperationException($"Source SkillBookItem {templateID} does not exist.");
 
-            EnsureExtraTemplateId(targetTemplateId, SkillBook.Instance.Count, nameof(SkillBookItem));
+            EnsureExtraTemplateId(targetTemplateId, Config.SkillBook.Instance.Count, nameof(SkillBookItem));
 
             SkillBookItem copiedItem = sourceItem.Duplicate(targetTemplateId);
             ApplyChanges(copiedItem, changes, "TemplateId", "NewTemplateId");
@@ -241,6 +241,64 @@ namespace FeaturesBoundToFuyu
         {
             if (templateId < baseConfigCount)
                 throw new ArgumentOutOfRangeException($"{itemTypeName} template id {templateId} is inside the base config range. Use a new id reserved for modded items.");
+        }
+
+        private static object ResolveBangReference(string key, object value, object configInstance)
+        {
+            string text = value as string;
+            if (string.IsNullOrEmpty(text) || !text.StartsWith("!!!"))
+                return value;
+
+            string numberPart = text.Substring(3);
+            if (!short.TryParse(numberPart, NumberStyles.Integer, CultureInfo.InvariantCulture, out short templateId))
+                return value;
+
+            Type configType = configInstance.GetType();
+            PropertyInfo indexer = configType.GetProperty("Item", new[] { typeof(short) });
+            if (indexer == null)
+                return value;
+
+            object referencedItem;
+            try
+            {
+                referencedItem = indexer.GetValue(configInstance, new object[] { templateId });
+            }
+            catch
+            {
+                return value;
+            }
+
+            if (referencedItem == null)
+                return value;
+
+            Type itemType = referencedItem.GetType();
+            var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.IgnoreCase;
+
+            FieldInfo targetField = itemType.GetField(key, flags);
+            if (targetField != null)
+                return targetField.GetValue(referencedItem);
+
+            PropertyInfo targetProperty = itemType.GetProperty(key, flags);
+            if (targetProperty != null && targetProperty.CanRead)
+                return targetProperty.GetValue(referencedItem);
+
+            int prefixLength = 0;
+            while (prefixLength < key.Length && char.IsDigit(key[prefixLength]))
+                prefixLength++;
+
+            if (prefixLength > 0 && prefixLength < key.Length)
+            {
+                string strippedKey = key.Substring(prefixLength);
+                targetField = itemType.GetField(strippedKey, flags);
+                if (targetField != null)
+                    return targetField.GetValue(referencedItem);
+
+                targetProperty = itemType.GetProperty(strippedKey, flags);
+                if (targetProperty != null && targetProperty.CanRead)
+                    return targetProperty.GetValue(referencedItem);
+            }
+
+            return value;
         }
 
         private static bool TryGetValueIgnoreCase(Dictionary<string, object> changes, string key, out object value)
