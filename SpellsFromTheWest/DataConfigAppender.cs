@@ -107,6 +107,47 @@ namespace FeaturesBoundToFuyu
             AdaptableLog.Info($"Loaded {items.Count} special effect item(s) from {yamlPath}");
         }
 
+        public static void LoadSkillBooksFromYamlFile(string yamlPath)
+        {
+            AdaptableLog.Info($"Loading skill book items from YAML file: {yamlPath}");
+            if (string.IsNullOrWhiteSpace(yamlPath))
+                throw new ArgumentOutOfRangeException("yamlPath is empty.", nameof(yamlPath));
+
+            if (!File.Exists(yamlPath))
+            {
+                AdaptableLog.Info($"YAML file not found: {yamlPath}");
+                return;
+            }
+
+            string yaml = File.ReadAllText(yamlPath, Encoding.UTF8);
+            var items = ParseYamlTopLevelObjects(yaml);
+
+            foreach (var pair in items)
+            {
+                int newTemplateId = pair.Key;
+                Dictionary<string, object> yamlItem = pair.Value;
+
+                if (!TryGetValueIgnoreCase(yamlItem, "TemplateId", out object sourceTemplateValue))
+                    throw new ArgumentOutOfRangeException($"YAML item {newTemplateId} must include TemplateId (the source id to copy from).");
+
+                int sourceTemplateId = Convert.ToInt32(sourceTemplateValue, CultureInfo.InvariantCulture);
+
+                var changes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+                foreach (var field in yamlItem)
+                {
+                    if (string.Equals(field.Key, "TemplateId", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    changes[field.Key] = field.Value;
+                }
+
+                changes["NewTemplateId"] = newTemplateId;
+                CreateAndAppendSkillBookItemFromStringsNew(sourceTemplateId, changes);
+            }
+
+            AdaptableLog.Info($"Loaded {items.Count} skill book item(s) from {yamlPath}");
+        }
+
         public static void CreateAndAppendSpecialEffectItemFromStringsNew(int templateID, Dictionary<string, object> changes)
         {
             if (changes == null)
@@ -143,6 +184,24 @@ namespace FeaturesBoundToFuyu
             SaveCombatSkillItem(copiedItem);
         }
 
+        public static void CreateAndAppendSkillBookItemFromStringsNew(int templateID, Dictionary<string, object> changes)
+        {
+            if (changes == null)
+                throw new ArgumentNullException(nameof(changes));
+
+            int targetTemplateId = GetRequiredNewTemplateId(changes);
+
+            SkillBookItem sourceItem = SkillBook.Instance[(short)templateID];
+            if (sourceItem == null)
+                throw new InvalidOperationException($"Source SkillBookItem {templateID} does not exist.");
+
+            EnsureExtraTemplateId(targetTemplateId, SkillBook.Instance.Count, nameof(SkillBookItem));
+
+            SkillBookItem copiedItem = sourceItem.Duplicate(targetTemplateId);
+            ApplyChanges(copiedItem, changes, "TemplateId", "NewTemplateId");
+            SaveSkillBookItem(copiedItem);
+        }
+
         private static void SaveCombatSkillItem(CombatSkillItem item)
         {
             string refName = BuildRefName(item.Name, item.TemplateId);
@@ -153,6 +212,12 @@ namespace FeaturesBoundToFuyu
         {
             string refName = BuildRefName(item.Name, item.TemplateId);
             DataConfigAppenderHelpers.AddSpecialEffectItemToConfig(item.TemplateId.ToString(), refName, item);
+        }
+
+        private static void SaveSkillBookItem(SkillBookItem item)
+        {
+            string refName = BuildRefName(item.Name, item.TemplateId);
+            DataConfigAppenderHelpers.AddSkillBookToConfig(item.TemplateId.ToString(), refName, item);
         }
 
         private static string BuildRefName(string name, int templateId)

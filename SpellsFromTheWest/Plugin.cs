@@ -77,12 +77,13 @@ namespace FeaturesBoundToFuyu
             foreach (ModId modId in loadedModIds)
             {
                 string directory = DomainManager.Mod.GetModDirectory(modId.ToString());
-                if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")))
+                if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")) || File.Exists(Path.Combine(directory, "SkillBooks.yml")))
                 {
                     try
                     {
                         DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
                         DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
+                        DataConfigAppender.LoadSkillBooksFromYamlFile(Path.Combine(directory, "SkillBooks.yml"));
                     }
                     catch (Exception ex)
                     {

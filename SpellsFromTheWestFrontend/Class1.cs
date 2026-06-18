@@ -67,12 +67,13 @@ namespace FeaturesBoundToFuyu
                 }
 
                 string directory = mod.DirectoryName;
-                if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")))
+                if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")) || File.Exists(Path.Combine(directory, "SkillBooks.yml")))
                 {
                     try
                     {
                         DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
                         DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
+                        DataConfigAppender.LoadSkillBooksFromYamlFile(Path.Combine(directory, "SkillBooks.yml"));
                     }
                     catch (Exception ex)
                     {
@@ -83,6 +84,7 @@ namespace FeaturesBoundToFuyu
 
             DumpConfigToCsv(CombatSkill.Instance, @".\CombatSkills.csv");
             DumpConfigToCsv(SpecialEffect.Instance, @".\SpecialEffects.csv");
+            DumpConfigToCsv(SkillBook.Instance, @".\SkillBooks.csv");
             AdaptableLog.Info($"Dumping game data. Dump Directory {Directory.GetCurrentDirectory()}");
 
             AdaptableLog.Info($"SpellsFromTheWest Frontend initialized. LanguageKey: {LanguageKey}.");
