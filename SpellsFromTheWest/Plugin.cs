@@ -59,7 +59,6 @@ namespace FeaturesBoundToFuyu
 
             EnsureTypesArePreserved();
 
-            string directory = DomainManager.Mod.GetModDirectory(thisModIdStr);
             int langSettings = 0;
             DomainManager.Mod.GetSetting(base.ModIdStr, "Language", ref langSettings);
             bool learnAll = false;
@@ -74,8 +73,23 @@ namespace FeaturesBoundToFuyu
                 LanguageKey = 86;
             }
 
-            DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
-            DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
+            List<ModId> loadedModIds = ModDomain.GetLoadedModIds();
+            foreach (ModId modId in loadedModIds)
+            {
+                string directory = DomainManager.Mod.GetModDirectory(modId.ToString());
+                if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")))
+                {
+                    try
+                    {
+                        DataConfigAppender.LoadSpecialEffectsFromYamlFile(Path.Combine(directory, "SpecialEffects.yml"));
+                        DataConfigAppender.LoadCombatSkillsFromYamlFile(Path.Combine(directory, "CombatSkills.yml"));
+                    }
+                    catch (Exception ex)
+                    {
+                        AdaptableLog.Info($"Failed to load YAML files from mod directory {directory}: {ex.Message}");
+                    }
+                }
+            }
 
             AdaptableLog.Info($"SpellsFromTheWest Frontend initialized. LanguageKey: {LanguageKey}.");
         }
