@@ -35,6 +35,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             _checking = false;
             _delaying = false;
             _affecting = false;
@@ -48,6 +49,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.UnRegisterHandler_SkillSilenceEnd(OnSkillSilenceEnd);
+            base.OnDisable(context);
         }
 
         private void OnSkillSilenceEnd(DataContext context, CombatSkillKey skillKey)

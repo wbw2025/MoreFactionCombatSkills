@@ -54,6 +54,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             _bonusActive = false;
             _bonusHits = default;
             _bonusPenetrations = default;
@@ -79,6 +80,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
+            base.OnDisable(context);
         }
 
         private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)

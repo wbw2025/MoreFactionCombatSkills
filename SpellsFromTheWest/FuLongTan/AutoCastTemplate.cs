@@ -1,5 +1,4 @@
 ﻿
-using GameData.Combat.Math;
 using GameData.Common;
 using GameData.DomainEvents;
 using GameData.Domains;
@@ -7,11 +6,6 @@ using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect;
 using GameData.Domains.SpecialEffect.CombatSkill;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 {
@@ -33,17 +27,15 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         private bool _affecting;
 
-        private int _addDamagePercent;
-
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             _affecting = false;
             _checking = false;
             _delaying = false;
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
-            Events.RegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
 
         }
@@ -52,9 +44,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
         {
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
-            Events.UnRegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
-
+            base.OnDisable(context);
         }
 
 
@@ -101,10 +92,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             //{
             //    DomainManager.Combat.ChangeSkillPrepareProgress(base.CombatChar, base.CombatChar.SkillPrepareTotalProgress * 50 / 100);
             //}
-        }
-
-        private void OnCastAttackSkillBegin(DataContext context, CombatCharacter attacker, CombatCharacter defender, short skillId)
-        {
         }
 
         private void OnCastSkillEnd(DataContext context, int charId, bool isAlly, short skillId, sbyte power, bool interrupted)

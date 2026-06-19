@@ -8,10 +8,7 @@ using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect;
 using GameData.Domains.SpecialEffect.CombatSkill;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
@@ -73,16 +70,14 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
 
         private bool _affecting;
 
-        private int _addDamagePercent;
-
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             CreateAffectedData(69, EDataModifyType.AddPercent, -1);
             _affecting = false;
             Events.RegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.RegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
-            Events.RegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.RegisterHandler_GetShaTrick(OnGetShaTrick);
 
@@ -92,9 +87,9 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         {
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
-            Events.UnRegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.UnRegisterHandler_GetShaTrick(OnGetShaTrick);
+            base.OnDisable(context);
 
         }
 
@@ -146,10 +141,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             {
                 DomainManager.Combat.ChangeSkillPrepareProgress(base.CombatChar, base.CombatChar.SkillPrepareTotalProgress * 50 / 100);
             }
-        }
-
-        private void OnCastAttackSkillBegin(DataContext context, CombatCharacter attacker, CombatCharacter defender, short skillId)
-        {
         }
 
         private void OnCastSkillEnd(DataContext context, int charId, bool isAlly, short skillId, sbyte power, bool interrupted)

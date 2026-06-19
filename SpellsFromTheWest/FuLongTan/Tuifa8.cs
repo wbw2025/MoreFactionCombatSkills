@@ -36,6 +36,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             _checking = false;
             _delaying = false;
             _affecting = false;
@@ -49,6 +50,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.UnRegisterHandler_CombatStateMachineUpdateEnd(OnCombatStateMachineUpdateEnd);
             Events.UnRegisterHandler_AddInjury(OnAddInjury);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private void OnAddInjury(DataContext context, CombatCharacter character, sbyte bodyPart, bool isInner, int value, bool changeToOld)

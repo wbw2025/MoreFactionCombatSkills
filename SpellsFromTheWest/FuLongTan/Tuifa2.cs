@@ -38,6 +38,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             _checking = false;
             _delaying = false;
             _affecting = false;
@@ -55,6 +56,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.UnRegisterHandler_EatingItem(OnEatingItem);
             Events.UnRegisterHandler_UsedMedicine(OnUsedMedicine);
             Events.UnRegisterHandler_UsedCustomItem(OnUsedCustomItem);
+            base.OnDisable(context);
         }
 
         private void OnEatingItem(DataContext context, GameData.Domains.Character.Character character, ItemKey itemKey)

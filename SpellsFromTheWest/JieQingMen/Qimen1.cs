@@ -7,10 +7,7 @@ using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect;
 using GameData.Domains.SpecialEffect.CombatSkill;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static GameData.DomainEvents.Events;
 
 
@@ -54,6 +51,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             Events.RegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
@@ -62,6 +60,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         {
             Events.UnRegisterHandler_CastAttackSkillBegin(OnCastAttackSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private void OnCastAttackSkillBegin(DataContext context, CombatCharacter attacker, CombatCharacter defender, short skillId)

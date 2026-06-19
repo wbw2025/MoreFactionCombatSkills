@@ -12,8 +12,6 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 using GameData.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using static GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
@@ -46,11 +44,13 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         };
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
         public override void OnDisable(DataContext context)
         {
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private void OnCastSkillEnd(DataContext context, int charId, bool isAlly, short skillId, sbyte power, bool interrupted)
