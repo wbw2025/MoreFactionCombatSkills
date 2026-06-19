@@ -8,9 +8,6 @@ using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong;
 using GameData.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
@@ -31,6 +28,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             stackCount = 0;
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.RegisterHandler_AttackSkillAttackEnd(OnAttackSkillAttackEnd);
@@ -40,6 +38,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
         {
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.UnRegisterHandler_AttackSkillAttackEnd(OnAttackSkillAttackEnd);
+            base.OnDisable(context);
         }
         private void OnCastSkillEnd(DataContext context, int charId, bool isAlly, short skillId, sbyte power, bool interrupted)
         {

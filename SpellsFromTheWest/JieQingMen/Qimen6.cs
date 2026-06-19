@@ -1,24 +1,16 @@
-﻿using GameData.Common;
-using GameData.Domains.Combat;
-using GameData.Domains;
-using GameData.Domains.SpecialEffect.CombatSkill;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Config;
 using GameData.Combat.Math;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-
 using GameData.Common;
 using GameData.DomainEvents;
+using GameData.Domains;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
-using static GameData.DomainEvents.Events;
-using GameData.Utilities;
-using Config;
 using GameData.Domains.SpecialEffect;
+using GameData.Domains.SpecialEffect.CombatSkill;
+using GameData.Utilities;
+using System;
+using System.Collections.Generic;
+using static GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
 {
@@ -34,7 +26,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
             : base(skillKey, 54103)
         {
         }
-        ushort powerKey = 199;
         ushort dmgKey = 69;
         public override void OnEnable(DataContext context)
         {

@@ -35,6 +35,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             Events.RegisterHandler_AttackSkillAttackEnd(OnAttackSkillAttackEnd);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
@@ -43,6 +44,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         {
             Events.UnRegisterHandler_AttackSkillAttackEnd(OnAttackSkillAttackEnd);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private void OnAttackSkillAttackEnd(CombatContext context, sbyte hitType, bool hit, int index)

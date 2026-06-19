@@ -42,6 +42,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
 
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             _checking = false;
             _delaying = false;
             _affecting = false;
@@ -62,6 +63,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.FuLongTan
             Events.UnRegisterHandler_AddInjury(OnAddInjury);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
             Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
+            base.OnDisable(context);
         }
 
         private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)

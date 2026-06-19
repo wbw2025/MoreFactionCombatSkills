@@ -1,17 +1,10 @@
 ﻿
-using GameData.Combat.Math;
 using GameData.Common;
 using GameData.DomainEvents;
 using GameData.Domains;
 using GameData.Domains.Combat;
 using GameData.Domains.CombatSkill;
-using GameData.Domains.SpecialEffect;
 using GameData.Domains.SpecialEffect.CombatSkill;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
 {

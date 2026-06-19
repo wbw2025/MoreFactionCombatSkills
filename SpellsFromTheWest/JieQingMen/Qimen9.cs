@@ -10,9 +10,6 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 using GameData.Combat.Math;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
@@ -28,19 +25,6 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         // 正：每1成（10%）增加奇门威力2%
         // 逆：每1成（10%）增加 奇门、剑法、刀法、长兵 威力1%
 
-        // TODO: 填入实际的技能分类 id（短整型 sbyte）：
-        // `QiMenSkillType` = 奇门
-        // `SwordSkillType` = 剑法
-        // `BladeSkillType` = 刀法
-        // `LongWeaponSkillType` = 长兵
-        // 参见 CombatSkillType
-        private sbyte QiMenSkillType = 10;
-        private sbyte SwordSkillType = 7;
-        private sbyte BladeSkillType = 8;
-        private sbyte LongWeaponSkillType = 9;
-
-        private int _SkillPower;
-
         public Qimen9()
         {
         }
@@ -51,7 +35,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         }
         public override void OnEnable(DataContext context)
         {
-            _SkillPower = 0;
+            base.OnEnable(context);
             if (base.IsDirect)
             {
                 // Affect field 199 (Power)
@@ -66,6 +50,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         {
             Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)

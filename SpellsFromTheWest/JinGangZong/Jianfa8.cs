@@ -9,11 +9,6 @@ using GameData.Domains.SpecialEffect.CombatSkill;
 using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen;
 using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
 {
     internal class Jianfa8 : CombatSkillEffectBase
@@ -51,6 +46,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
         }
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             stackCount = 0;
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
             CreateAffectedData(199, EDataModifyType.Add, -1);
@@ -60,6 +56,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
         public override void OnDisable(DataContext context)
         {
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
 

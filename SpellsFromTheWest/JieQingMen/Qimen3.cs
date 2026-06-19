@@ -10,10 +10,7 @@ using GameData.Domains.CombatSkill;
 using GameData.Domains.SpecialEffect;
 using GameData.Domains.SpecialEffect.CombatSkill;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static GameData.DomainEvents.Events;
 
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
@@ -40,11 +37,13 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen
         // 逆：发挥十成威力时：敌人每有一个杀式，我方消耗4+1%健康，吸取敌人提气和架势，等同于20%释放该功法的消耗的提气和架势。
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
         }
         public override void OnDisable(DataContext context)
         {
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private int CountShaTricks(CombatCharacter combatChar)

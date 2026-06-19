@@ -10,11 +10,6 @@ using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JieQingMen;
 using GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong;
 using GameData.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using static GameData.DomainEvents.Events;
 namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
 {
@@ -36,6 +31,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
         }
         public override void OnEnable(DataContext context)
         {
+            base.OnEnable(context);
             stackCount = 0;
             penaltyFactor = 1;
             Events.RegisterHandler_CastSkillEnd(OnCastSkillEnd);
@@ -45,8 +41,9 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
         }
         public override void OnDisable(DataContext context)
         {
-		Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
+            Events.UnRegisterHandler_PrepareSkillBegin(OnPrepareSkillBegin);
             Events.UnRegisterHandler_CastSkillEnd(OnCastSkillEnd);
+            base.OnDisable(context);
         }
 
         private void OnPrepareSkillBegin(DataContext context, int charId, bool isAlly, short skillId)
