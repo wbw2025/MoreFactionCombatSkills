@@ -1,4 +1,5 @@
 ﻿using Config;
+using FrameWork.ModSystem;
 using GameData.Domains.Combat;
 using GameData.Domains.Mod;
 using GameData.Utilities;
@@ -14,7 +15,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TaiwuModdingLib.Core.Plugin;
-using YamlDotNet.Core.Tokens;
 
 namespace FeaturesBoundToFuyu
 {
@@ -57,17 +57,19 @@ namespace FeaturesBoundToFuyu
                 LanguageKey = 86;
             }
 
-            ModInfoList modInfoList = ModManager.GetLoadedModInfoList();
-            ModInfo myModInfo = ModManager.GetModInfo(this.ModIdStr);
-            foreach (ModInfo mod in modInfoList.Items)
+
+            ModInfoWithDisplayData myModInfo = ModManager.GetModInfo(this.ModIdStr);
+
+            foreach (ModId enabledMod in ModManager.EnabledMods)
             {
-                if(mod.DirectoryName == myModInfo.DirectoryName && dontLoadSelf)
+                var modInfo = ModManager.GetModInfo(enabledMod);
+                if(modInfo.DirectoryName == myModInfo.DirectoryName && dontLoadSelf)
                 {
-                        AdaptableLog.Info($"Skip self");
+                    AdaptableLog.Info($"Skip self");
                     continue;
                 }
 
-                string directory = mod.DirectoryName;
+                string directory = modInfo.DirectoryName;
                 if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")) || File.Exists(Path.Combine(directory, "SkillBooks.yml")))
                 {
                     try

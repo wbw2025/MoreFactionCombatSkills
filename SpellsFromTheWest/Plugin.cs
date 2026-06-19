@@ -75,15 +75,17 @@ namespace FeaturesBoundToFuyu
                 LanguageKey = 86;
             }
 
-            List<ModId> loadedModIds = ModDomain.GetLoadedModIds();
-            foreach (ModId modId in loadedModIds)
+            var modInfoDictField = typeof(ModDomain).GetField("ModInfoDict", BindingFlags.NonPublic | BindingFlags.Static);
+            var modInfoDict = (Dictionary<string, ModInfo>)modInfoDictField.GetValue(null);
+            foreach (var kvp in modInfoDict)
             {
-                if(modId.ToString() == thisModIdStr && dontLoadSelf)
+                string modIdStr = kvp.Key;
+                if(modIdStr == thisModIdStr && dontLoadSelf)
                 {
                     AdaptableLog.Info($"Skip self");
                     continue;
                 }
-                string directory = DomainManager.Mod.GetModDirectory(modId.ToString());
+                string directory = kvp.Value.DirectoryName;
                 if (File.Exists(Path.Combine(directory, "CombatSkills.yml")) || File.Exists(Path.Combine(directory, "SpecialEffects.yml")) || File.Exists(Path.Combine(directory, "SkillBooks.yml")))
                 {
                     try
