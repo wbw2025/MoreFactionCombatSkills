@@ -17,7 +17,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
     {
         // 正：Desc: ["发挥最少五成威力时，【佛王剑】有+20%的概率在施展后再次从50%无消耗施展。自动施展的【佛王剑】每释放一次，收到该特效加成效果-0.6倍。"]
 
-        // 逆： Desc: ["发挥最少五成威力时，你的下一个【佛王剑】有85%的概率额外施展一次（不叠加）。"]
+        // 逆： Desc: ["发挥最少五成威力时，你的下一个【佛王剑】有75%的概率额外从50%施展一次（不叠加）。"]
 
         int stackCount = 0;
         bool isAutoCast = false;
@@ -70,7 +70,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
             }
             if (stackCount > 0 && Jianfa9.SkillIsFoWang(skillId))
             {
-                int recastChance = (int)(stackCount * (IsDirect ? 20 : 85) * penaltyFactor);
+                int recastChance = (int)(stackCount * (IsDirect ? 20 : 75) * penaltyFactor);
                 if (!IsDirect)
                 {
                     stackCount = 0;
@@ -78,7 +78,7 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
                 if (recastChance > 0 && context.Random.Next(100) < recastChance && DomainManager.Combat.CanCastSkill(base.CombatChar, skillId, costFree: true))
                 {
                     ShowSpecialEffectTips(0);
-                    penaltyFactor *= 0.4;
+                    penaltyFactor *= 0.6;
                     isAutoCast = true;
                     DomainManager.Combat.CastSkillFree(context, base.CombatChar, skillId);
                 }

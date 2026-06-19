@@ -13,12 +13,8 @@ namespace GameData.Domains.SpecialEffect.MoreFactionCombatSkills.JinGangZong
 {
     internal class Jianfa8 : CombatSkillEffectBase
     {
-        // 正： 发挥五成威力时，增加【佛王之剑】25%的威力。
-        // 逆：发挥五成威力时，增加下一个【佛王之剑】60%的威力。
-
-        // we dont need this
-        public static readonly int powerAmpDirect = 25;
-        public static readonly int powerAmpInDirect = 60;
+        // 正： 发挥五成威力时，增加【佛王之剑】35%的威力。
+        // 逆：发挥五成威力时，增加下一个【佛王之剑】75%的威力。
         
         int stackCount = 0;
 
